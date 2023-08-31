@@ -1,3 +1,4 @@
+ 
 import { Login } from './components/Login'
 
 function App() {
@@ -5,10 +6,10 @@ function App() {
 
   return (
 
-      
+
     <>
 
-        <Login/>
+      <Login />
 
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
