@@ -43,7 +43,7 @@ export default function FormVendedores() {
         </label>
 
 
-        <button type="submit">Enviar</button>
+        <button type="submit" className="border bg-blue-800 text-white w-24 rounded-md" >Enviar</button>
         </form>
       </div>
     </>
