@@ -1,5 +1,5 @@
 import "./App.css";
-import FormProveedores from "./formProveedores/FormProveedores";
+import FormProveedores from "./components/formProveedores/FormProveedores";
 
 function App() {
   return (
