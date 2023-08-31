@@ -1,45 +1,28 @@
 import React, { useState } from "react";
-
-const ClientesRegistro = () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [email, setEmail] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [edad, setEdad] = useState("");
-  const [referencias, setReferencias] = useState("");
-  const [historialCompras, setHistorialCompras] = useState("");
-  const [nivelSatisfaccion, setNivelSatisfaccion] = useState("");
-  const [observaciones, setObservaciones] = useState("");
+function ClientesRegistro() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    telefono: "",
+    email: "",
+    direccion: "",
+    sexo: "",
+    edad: "",
+    referencias: "",
+    histdecompras: "",
+    niveldesatisfacion: "",
+    observaciones: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes realizar el registro del cliente con todos los campos.
-    // Por ahora, solo mostrar datos en la consola.
-    console.log("Nombre:", nombre);
-    console.log("Apellido:", apellido);
-    console.log("Teléfono:", telefono);
-    console.log("Email:", email);
-    console.log("Dirección:", direccion);
-    console.log("Sexo:", sexo);
-    console.log("Edad:", edad);
-    console.log("Referencias:", referencias);
-    console.log("Historial de Compras:", historialCompras);
-    console.log("Nivel de Satisfacción:", nivelSatisfaccion);
-    console.log("Observaciones:", observaciones);
-    // Limpia los campos después del registro.
-    setNombre("");
-    setApellido("");
-    setTelefono("");
-    setEmail("");
-    setDireccion("");
-    setSexo("");
-    setEdad("");
-    setReferencias("");
-    setHistorialCompras("");
-    setNivelSatisfaccion("");
-    setObservaciones("");
   };
 
   return (
@@ -55,8 +38,8 @@ const ClientesRegistro = () => {
           <input
             type="text"
             id="nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
+            value={formData.nombre}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -67,8 +50,8 @@ const ClientesRegistro = () => {
           <input
             type="text"
             id="apellido"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
+            value={formData.apellido}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -79,8 +62,8 @@ const ClientesRegistro = () => {
           <input
             type="tel"
             id="telefono"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
+            value={formData.telefono}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -91,8 +74,8 @@ const ClientesRegistro = () => {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -103,8 +86,8 @@ const ClientesRegistro = () => {
           <input
             type="text"
             id="direccion"
-            value={direccion}
-            onChange={(e) => setDireccion(e.target.value)}
+            value={formData.direccion}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -114,8 +97,8 @@ const ClientesRegistro = () => {
           </label>
           <select
             id="sexo"
-            value={sexo}
-            onChange={(e) => setSexo(e.target.value)}
+            value={formData.sexo}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="">Seleccionar</option>
@@ -131,8 +114,8 @@ const ClientesRegistro = () => {
           <input
             type="number"
             id="edad"
-            value={edad}
-            onChange={(e) => setEdad(e.target.value)}
+            value={formData.edad}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -142,9 +125,9 @@ const ClientesRegistro = () => {
           </label>
           <textarea
             id="referencias"
-            value={referencias}
-            onChange={(e) => setReferencias(e.target.value)}
-            className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-100"
+            value={formData.referencias}
+            onChange={handleInputChange}
+            className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-100 resize-none"
             rows="3"
           ></textarea>
         </div>
@@ -154,9 +137,9 @@ const ClientesRegistro = () => {
           </label>
           <textarea
             id="historialCompras"
-            value={historialCompras}
-            onChange={(e) => setHistorialCompras(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            value={formData.histdecompras}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 resize-none"
             rows="3"
           ></textarea>
         </div>
@@ -167,8 +150,8 @@ const ClientesRegistro = () => {
           <input
             type="number"
             id="nivelSatisfaccion"
-            value={nivelSatisfaccion}
-            onChange={(e) => setNivelSatisfaccion(e.target.value)}
+            value={formData.niveldesatisfacion}
+            onChange={handleInputChange}
             className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
@@ -178,9 +161,9 @@ const ClientesRegistro = () => {
           </label>
           <textarea
             id="observaciones"
-            value={observaciones}
-            onChange={(e) => setObservaciones(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            value={formData.observaciones}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 resize-none"
             rows="3"
           ></textarea>
         </div>
@@ -193,6 +176,5 @@ const ClientesRegistro = () => {
       </form>
     </div>
   );
-};
-
+}
 export default ClientesRegistro;
