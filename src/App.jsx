@@ -1,5 +1,5 @@
 import React from "react";
-import ClientesRegistro from "./ClientesRegistro";
+import ClientesRegistro from "./components/ClientesRegistro";
 
 function App() {
   return (
