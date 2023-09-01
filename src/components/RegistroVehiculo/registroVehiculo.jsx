@@ -21,7 +21,7 @@ function RegistroVehiculo() {
               <label htmlFor="matricula">Matricula</label>
               <input id="matricula" type="text" className="w-28 border-2 border-blue-900 rounded-lg" />
                 <br></br>
-
+             
               <label htmlFor="color" className="mt-2">Color</label>
               <input id="color" type="text" className="w-28 border-2 border-blue-900 rounded-lg mt-2" />
                 <br></br>

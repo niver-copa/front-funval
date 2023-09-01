@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 const CardDetails = () => {
   const params = useParams();
 
-  const car = carData.find((car) => car.name === params.name);
+  const car = carData.find((car) => car.id === params.id);
 
   if (!car) {
     return <div>Automóvil no encontrado</div>;
