@@ -6,6 +6,7 @@ import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 
+
 function App() {
   return (
     <BrowserRouter>
