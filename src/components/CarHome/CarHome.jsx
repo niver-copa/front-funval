@@ -1,10 +1,24 @@
-import { useState } from "react";
-import carData from "../../../CarData";
+import { useEffect, useState } from "react";
+import axios from 'axios';
+// import carData from "../../../CarData";
 import CarNav from "./CarNav";
 import Card from "./Card";
 import SideBar from "./SideBar";
 
 export const CarHome = () => {
+
+  const [vehiculo, setVehiculo] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/vehiculos')
+      .then((response) => {
+        setVehiculo(response.data);
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const [Filtro, setFiltro] = useState({
     marca: "",
@@ -17,7 +31,7 @@ export const CarHome = () => {
  
 
  
-  const filteredCars = carData.filter(car => {
+  const filteredCars = vehiculo.filter(car => {
     const marca = Filtro.precio_mi == "" ? true : car.precio > Filtro.precio_mi;
     const modelo = Filtro.modelo == "" ? true : car.modelo.nombre == Filtro.modelo;
     const precio_mi = Filtro.precio_mi == "" ? true : car.precio > Filtro.precio_mi;
