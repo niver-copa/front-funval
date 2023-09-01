@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 // import carData from "../../../CarData";
-import CarNav from "./CarNav";
+import CarNav from "../Nav/Nav";
 import Card from "./Card";
 import SideBar from "./SideBar";
 
@@ -44,8 +44,8 @@ export const CarHome = () => {
 
 
   return (
-    <div className="w-screen h-screen bg-[#f5f5f5] flex flex-col">
-      <CarNav />
+    <div className="max-w-screen w-full h-screen bg-[#f5f5f5] flex flex-col mt-14">
+     
       <div className="w-full h-full flex">
         <SideBar setFiltro={setFiltro} />
         <div className="w-full md:w-[80%] h-full flex flex-wrap justify-center gap-5 pt-20 overflow-y-auto max-h-screen">

@@ -6,20 +6,26 @@ import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
+import CarNav from "./components/Nav/Nav";
+import Lista from "./components/lista/lista";
 
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+     <CarNav/>
+      <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesRegistro />} />
         <Route path="/registro" element={<RegistroVehiculo />} />
+        <Route path="/marcas" element={<Lista />} />
         <Route path="/cardealer" element={<CarHome />} />
         <Route path="/cardealer/:name" element={<CardDetails />} />
       </Routes>
+     
     </BrowserRouter>
+   
   );
 }
 

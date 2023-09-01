@@ -26,7 +26,7 @@ function ClientesRegistro() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-md ">
+    <div className="max-w-md mx-auto mt-28 p-4 bg-white shadow-md rounded-md ">
       <h2 className="text-xl font-semibold mb-8 flex justify-center ">
         Registro de Clientes
       </h2>
