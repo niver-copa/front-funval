@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+
+import { useState } from "react";
+
+
 function ClientesRegistro() {
   const [formData, setFormData] = useState({
     nombre: "",

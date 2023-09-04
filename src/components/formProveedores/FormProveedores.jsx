@@ -19,9 +19,9 @@ export default function FormProveedores() {
   return (
     <Fragment>
       <main className=" h-screen bg-white justify-center items-center flex">
-        <form
-          action=""
-          method=""
+
+        <div
+       
           className=" w-[50%] h-[70%] flex flex-col flex-wrap items-center justify-center bg-white rounded-3xl gap-7 shadow-slate-400 shadow-xl "
         >
           <h1>REGISTRO DE PROVEEDORES</h1>
@@ -78,10 +78,8 @@ export default function FormProveedores() {
             />
           </label>
 
-          <button className=" px-12 py-3 bg-blue-600 text-white rounded-2xl w-[70%]">
-            Registar
-          </button>
-        </form>
+        </div>
+
       </main>
     </Fragment>
   );

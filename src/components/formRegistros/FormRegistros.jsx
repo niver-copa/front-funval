@@ -26,9 +26,8 @@ export default function FormRegistros() {
   return (
     <Fragment>
       <main className=" h-screen bg-white justify-center items-center flex">
-        <form
-          action=""
-          method=""
+        <div
+        
           className=" w-[90%] h-[70%] flex flex-row flex-wrap items-center justify-center bg-white rounded-3xl gap-7 shadow-slate-400 shadow-xl "
         >
           <label htmlFor="nombre" className="relative">
@@ -160,11 +159,8 @@ export default function FormRegistros() {
               className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
             />
           </label>
-          <button className=" px-12 py-3 hover:bg-blue-300 hover:text-white bg-blue-600  text-white rounded-2xl">
-            Registar
-          </button>
 
-        </form>
+        </div>
       </main>
     </Fragment>
   );
