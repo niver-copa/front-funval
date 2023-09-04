@@ -14,7 +14,7 @@ import Marcas from "./components/Marcas/page";
 function App() {
   return (
     <BrowserRouter>
-      <CarNav />
+     <CarNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<FormRegistros />} />
@@ -24,8 +24,8 @@ function App() {
         <Route path="/cardealer/:name" element={<CardDetails />} />
         <Route path="/marcas" element={<Marcas />} />
       </Routes>
-    </BrowserRouter>
-  );
+         </BrowserRouter>
+     );
 }
 
 export default App;
