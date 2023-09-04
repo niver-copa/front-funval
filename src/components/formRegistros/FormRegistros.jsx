@@ -34,8 +34,8 @@ export default function FormRegistros() {
     <Fragment>
       <main className=" h-screen bg-white justify-center items-center flex">
         <form
-          action=""
-          method=""
+          action={"api/" + select}
+          method="POST"
           className=" w-[90%] h-[70%] flex items-center justify-around bg-white rounded-3xl  shadow-slate-400 shadow-xl "
         >
           <div className=" flex flex-wrap w-[45%] h-[90%] justify-around items-center">
@@ -47,7 +47,7 @@ export default function FormRegistros() {
                 type="text"
                 name="nombre"
                 id="nombre"
-                className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="apellido" className="relative">
@@ -58,7 +58,7 @@ export default function FormRegistros() {
                 type="text"
                 name="apellido"
                 id="apellido"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="correo" className="relative">
@@ -69,7 +69,7 @@ export default function FormRegistros() {
                 type="text"
                 name="correo"
                 id="correo"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="contra" className="relative">
@@ -82,7 +82,7 @@ export default function FormRegistros() {
                 type="password"
                 name="contra"
                 id="contra"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="telefono" className="relative">
@@ -93,7 +93,7 @@ export default function FormRegistros() {
                 type="text"
                 name="telefono"
                 id="telefono"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="sexo" className="relative">
@@ -104,7 +104,7 @@ export default function FormRegistros() {
                 type="text"
                 name="sexo"
                 id="sexo"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="fecha" className="relative">
@@ -117,7 +117,7 @@ export default function FormRegistros() {
                 type="text"
                 name="fecha"
                 id="fecha"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="documento" className="relative">
@@ -130,7 +130,7 @@ export default function FormRegistros() {
                 type="text"
                 name="documento"
                 id="documento"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="pais" className="relative">
@@ -141,7 +141,7 @@ export default function FormRegistros() {
                 type="text"
                 name="pais"
                 id="pais"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="codPostal" className="relative">
@@ -154,7 +154,7 @@ export default function FormRegistros() {
                 type="text"
                 name="codPostal"
                 id="codPostal"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
             <label htmlFor="direccion" className="relative">
@@ -165,21 +165,21 @@ export default function FormRegistros() {
                 type="text"
                 name="direccion"
                 id="direccion"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
               />
             </label>
-            <select className=" border-black border-2 py-2 pl-4 w-[200px]" name="select" id="select" onChange={e => setSelect(e.target.value)}>
-              <option disabled selected>--Seleccione--</option>
-              <option value="Proveedor">Proveedor</option>
-              <option value="Cliente">Cliente</option>
-              <option value="Vendedor">Vendedor</option>
+            <select className=" border-black border-2 py-2 pl-4 w-[200px]" name="select" id="select" onChange={e => setSelect(e.target.value)} required>
+              <option value="" disabled selected>--Seleccione--</option>
+              <option value="proveedor">Proveedor</option>
+              <option value="cliente">Cliente</option>
+              <option value="vendedor">Vendedor</option>
             </select>
           </div>
           <div className=" flex flex-col justify-between w-[45%] h-[90%]">
             <div style={{ boxShadow: "inset -7px -7px  10px #dfdfdf" }} className="flex border w-full h-[80%] overflow-x-hidden overflow-y-scroll justify-center items-center" >
-              {select === 'Proveedor' && <p><FormProveedores /></p>}
-              {select === 'Cliente' && <p><FormClientes /></p>}
-              {select === 'Vendedor' && <p><FormVendedores /></p>}
+              {select === 'proveedor' && <p><FormProveedores /></p>}
+              {select === 'cliente' && <p><FormClientes /></p>}
+              {select === 'vendedor' && <p><FormVendedores /></p>}
             </div>
             <button className=" px-12 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-2xl transition-all duration-200">
               Registar
