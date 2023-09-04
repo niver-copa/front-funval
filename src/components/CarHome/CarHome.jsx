@@ -31,7 +31,7 @@ export const CarHome = () => {
  
 
  
-  const filteredCars = vehiculo.filter(car => {
+  let filteredCars = vehiculo.filter(car => {
     const marca = Filtro.precio_mi == "" ? true : car.precio > Filtro.precio_mi;
     const modelo = Filtro.modelo == "" ? true : car.modelo.nombre == Filtro.modelo;
     const precio_mi = Filtro.precio_mi == "" ? true : car.precio > Filtro.precio_mi;
