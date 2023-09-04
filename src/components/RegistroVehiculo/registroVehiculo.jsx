@@ -1,123 +1,128 @@
-import React from 'react';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useState, handleSubmit } from 'react';
 import axios from 'axios';
 
 function RegistroVehiculo() {
 
-  const CreateUserForm = () => {
-    const [userData, setUserData] = useState({
-      matricula: '',
-      color: '',
-      marca: '',
-      modelo: '',
-      tipo_de_vehiculo:'',
-      date:'',
-      nuevo:'',
-      usado:'',
-      caja:'',
-      potencia:'',
-      traccion:'',
-      suspension_del:'',
-      suspension_tra:'',
-      precio:'',
-      descripcion:'',
-      imagen:'',
+  const [errores, setErrores] = useState({});
+
+
+  const [userData, setUserData] = useState({
+    matricula: '',
+    modelo_id: '',
+    anio: '',
+    color: '',
+    combustible_id: '',
+    caja_id: '',
+    descripcion: '',
+
+    delantera_suspension_id: '',
+    trasera_suspension_id: '',
+    potencia: '',
+    traccion: '',
+    torque_maximo: '',
+    ubicacion: '',
+    cilindros: '',
+    diametro_carrera: '',
+    cilindraje: '',
+    compresion: '',
+    alimentacion: '',
+    velocidades: '',
+    frenos_delanteros: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setUserData({
+      ...userData,
+      [id]: value,
     });
 
-    const handleInputChange = (e) => {
-      const { id, value } = e.target;
-      setUserData({
-        ...userData,
-        [id]: value,
-      });
-    };
+  };
 
-  axios.post('http://localhost:8000/api/registrar', userData)
+  function Enviar() {
+    console.log(userData)
+
+    axios.post('http://localhost:8000/api/vehiculos', userData)
       .then((response) => {
         console.log('Usuario creado con éxito:', response.data);
       })
       .catch((error) => {
-        console.error('Error al crear usuario:', error);
+        const data = JSON.parse(error.request.response)["errors"];
+        console.log(data);
+        setErrores(data)
+        setTimeout(() => {
+          setErrores({});
+        }, 10000);
+
       });
+
+  }
 
   return (
     <div>
-      
-      <main className="container mx-auto py-8 mt-14">
+
+      <form className="container mx-auto py-8 mt-14">
         <h1 className="font-bold text-2xl border-b-2 border-blue-900 ">
           Registro de vehiculo
         </h1>
-        <section className="flex justify-center space-x-12">
-          <div className="flex-col pt-2 flex w-56">
+
+        <section className="flex justify-center space-x-12 mt-4">
+
+          <div className="flex-col  flex w-40">
             <h1 className="font-bold border-b-2 border-blue-900 w-40">Datos generales:</h1>
-            <div className="flex-col space-x-2 pt-2">
-              <label htmlFor="matricula">Matricula</label>
-              <input id="matricula" type="text" className="w-28 border-2 border-blue-900 rounded-lg" value={userData.matricula} onChange={handleInputChange}/>
-                <br></br>
-             
-              <label htmlFor="color" className="mt-2">Color</label>
-              <input id="color" type="text" className="w-28 border-2 border-blue-900 rounded-lg mt-2" value={userData.color}  onChange={handleInputChange} />
-                <br></br>
-              <label htmlFor="marca" className="mt-2">Marca:</label>
-              <select id="marca" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.marca} onChange={handleInputChange}>
-                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
-              </select>
-                <br></br>
 
-              <label htmlFor="modelo" className="mt-2">Modelo:</label>
-              <select id="modelo" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.modelo} onChange={handleInputChange}>
-                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
-                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
-                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
-              </select>
-              <br></br>
+            <label htmlFor="color" className="mt-2">Matricula</label>
+            <input id="color" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.color} onChange={handleInputChange} />
 
-              <label htmlFor="Tipo de vehiculo" className="mt-2">Tipo de vehiculo:</label>
-              <select id="tipo_de_vehiculo" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.tipo_de_vehiculo} onChange={handleInputChange}>
-                <option value="tipo_de_vehiculo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
-                <option value="tipo_de_vehiculo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
-              </select>
-              <br></br>
+            <label htmlFor="marca" className="mt-2">Marca:</label>
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca} onChange={handleInputChange}>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            </select>
 
-              <label htmlFor="date" className="mt-2">Age:</label>
-              <input id="date" type="date" className="w-28 border-2 border-blue-900 rounded-lg p-2 mt-2 mb-2"  value={userData.date} onChange={handleInputChange}/>
-              <br></br>
+            <label htmlFor="marca" className="mt-2">Modelo:</label>
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca} onChange={handleInputChange}>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            </select>
 
-              <label htmlFor="condicion" className="mt-4">Condicion:</label>
-              <div className="mt-2">
-                <input type="radio" id="nuevo" name="condicion"  value={userData.nuevo} onChange={handleInputChange}/>
-                <label htmlFor="nuevo" className="ml-1">Nuevo</label>
-                <input type="radio" id="usado" name="condicion" className="ml-4"  value={userData.usado} onChange={handleInputChange} />
-                <label htmlFor="usado" className="ml-1">Usado</label>
-              </div>
-            </div>
+            <label htmlFor="color" className="mt-2">Año</label>
+            <input id="color" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.color} onChange={handleInputChange} />
+
+            <label htmlFor="color" className="mt-2">Color</label>
+            <input id="color" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.color} onChange={handleInputChange} />
+
+            <label htmlFor="marca" className="mt-2">Combustible:</label>
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca} onChange={handleInputChange}>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            </select>
+
+            <label htmlFor="marca" className="mt-2">Caja:</label>
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca} onChange={handleInputChange}>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            </select>
+
+
           </div>
 
-          <div className="flex-col pt-2 flex ">
-            <h1 className="font-bold border-b-2 border-blue-900 w-40">Datos Tecnicos:</h1>
-            <div className="pt-2 flex flex-col w-56">
-              <label htmlFor="caja" className="mt-2">Caja</label>
-              <input id="caja" type="text" className="w-40 border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange}/>
-             
-              <label htmlFor="potencia" className="mt-2">Potencia</label>
-              <input id="potencia" type="text" className="w-40 border-2 border-blue-900 rounded-lg "  value={userData.potencia} onChange={handleInputChange}/>
-              
-              <label htmlFor="traccion" className="mt-2">Traccion</label>
-              <input id="traccion" type="text" className="w-40 border-2 border-blue-900 rounded-lg " value={userData.traccion} onChange={handleInputChange} />
-              
-              <label htmlFor="Suspension del" className="mt-2">Suspension delantera</label>
-              <input id="Suspension del" type="text" className="w-40 border-2 border-blue-900 rounded-lg " value={userData.suspension_del} onChange={handleInputChange} />
-              
-              <label htmlFor="Suspension tra" className="mt-2">Suspension trasera</label>
-              <input id="Suspension tra" type="text" className="w-40 border-2 border-blue-900 rounded-lg "  value={userData.suspension_tra} onChange={handleInputChange}/>
-            </div>
-          </div>
-        </section>
-
-        <section className="flex justify-center pt-4">
           <div className="flex-col flex">
+
+            <label htmlFor="image" className=" font-bold border-b-2 border-blue-900 w-48">Subir foto del vehiculo</label>
+            <div className="h-52 w-96 rounded-lg border-2 border-blue-900 overflow-hidden mt-2">
+              <img className="w-full h-full object-cover " src="./fondo.png" alt="user" />
+            </div>
+
+            <input type="file" id="image" className="font-bold mt-2" value={userData.imagen} onChange={handleInputChange} />
+
+
+
             <label htmlFor="precio" className="font-bold border-b-2 border-blue-900 w-40">Precio</label>
             <div className="relative mt-2">
               <span className="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
@@ -125,29 +130,102 @@ function RegistroVehiculo() {
               </span>
               <input id="precio" type="text" className="w-42 border-2 border-blue-900 rounded-lg pl-8" value={userData.precio} onChange={handleInputChange} />
             </div>
-          </div>
-        </section>
 
-        <section className="flex justify-center">
-          <div className="flex-col flex pt-2">
             <label htmlFor="descripcion" className="font-bold border-b-2 border-blue-900 w-40">Descripcion</label>
-            <textarea id="descripcion" className="border-2 border-blue-900 w-96 h-40 rounded-lg mt-2 p-2" value={userData.descripcion} onChange={handleInputChange}></textarea>
+            <textarea id="descripcion" className="border-2 border-blue-900 w-96 h-28 rounded-lg mt-2 p-2" value={userData.descripcion} onChange={handleInputChange}></textarea>
+          </div>
 
-            <label htmlFor="image" className="pt-4 font-bold border-b-2 border-blue-900 w-48">Subir foto del vehiculo</label>
-            <input type="file" id="image" className="font-bold mt-2" value={userData.imagen} onChange={handleInputChange} />
+          <div> <h1 className="font-bold border-b-2 border-blue-900 w-40">Datos Tecnicos:</h1>
+
+            <div className="grid grid-cols-2 gap-x-4 ">
+              <label htmlFor="marca" className="mt-2">Suspecion Delantera: <br />
+                <select id="marca" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.marca} onChange={handleInputChange}>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+                </select>
+              </label>
+
+              <label htmlFor="marca" className="mt-2 ">Suspecion Trasera: <br />
+                <select id="marca" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.marca} onChange={handleInputChange}>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+                </select>
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Potencia<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Traccion<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Torque Maximo<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Ubicaion<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Cilindros<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Carreta<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Cilindraje<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Compresion<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Alimentacion<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Velocidades<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+              <label htmlFor="caja" className="mt-2">Frenos<br />
+                <input id="caja" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.caja} onChange={handleInputChange} />
+              </label>
+
+
+
+            </div>
+
           </div>
         </section>
-        <section className="flex justify-center pt-4">
+
+        <section className="font-semibold text-xl text-center text-red-400 mt-4">
+          <h1   >
+            {Object.entries(errores).map(([clave, valor]) => (
+              <li key={clave}>
+                <strong>{clave}:</strong> {valor}
+              </li>
+            ))}
+          </h1>
+
           <button
-            className="bg-blue-900 text-white font-bold py-2 px-4 rounded"
-            onClick={handleSubmit} 
+            type='button'
+            className="bg-blue-900 text-white font-bold py-2 px-10 rounded"
+            onClick={Enviar}
           >
-            Enviar
+            Registrar
           </button>
         </section>
-      </main>
+
+      </form>
     </div>
   );
-}}
+}
 
 export default RegistroVehiculo;
