@@ -17,15 +17,16 @@ export default function Nav() {
         </span>
       </Navbar.Brand>
 
-      <div className="flex h-20 p-4 items-center text-white   hover:bg-blue-900">
-        <Dropdown inline  label={"Mantenimientos "} className="flex h-20 p-4 items-center">
-            Dashboard
-            Settings
-            Earnings
-          <Dropdown.Divider />
-            Sign out
+      <div className=""></div>
+        <Dropdown inline  label={"Mantenimientos "} className=" text-white   hover:bg-blue-900 flex h-20 p-4 items-center mt-50">
+            <Navbar.Link  href="/marcas" className="block items-center hover:underline">
+              Marcas
+            </Navbar.Link>
+            <Navbar.Link  href="/modelos" className="block items-center hover:underline">
+              Modelos
+            </Navbar.Link>
         </Dropdown>
-        </div>
+       
        <ul className='flex h-full items-center'>
         <Navbar.Link  href="/cardealer" className="flex h-20 p-4 items-center text-white   hover:bg-blue-900">
           Listado

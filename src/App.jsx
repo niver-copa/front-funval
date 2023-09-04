@@ -7,6 +7,7 @@ import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
 import Nav from "./components/Nav/Nav";
+
 import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
 
