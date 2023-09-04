@@ -16,7 +16,7 @@ const SideBar = ({setFiltro}) => {
     setFiltro({
       marca,
       modelo,
-      precio_mi,
+      precio_mi, 
       precio_ma,
       anio,
     });
@@ -66,6 +66,7 @@ const SideBar = ({setFiltro}) => {
             name="modelo"
             onChange={cambiarMarcas}
           >
+            <option value="" disable></option>
             {marcas.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
             ))}
