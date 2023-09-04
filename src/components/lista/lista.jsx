@@ -2,6 +2,7 @@
 function Lista() {
   return (
     <div>
+
       <main className="container mx-auto py-8">
         <div className="flex justify-center">
           <div className="w-full md:w-1/2 p-4">

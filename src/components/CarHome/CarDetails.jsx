@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import carData from "../../../CarData";
-import CarNav from "./CarNav";
-import Card from "./Card";
-import SideBar from "./SideBar";
+
 const CardDetails = () => {
   const params = useParams();
 
@@ -13,7 +11,7 @@ const CardDetails = () => {
   }
   return (
     <div className="w-screen h-screen bg-[#f5f5f5] flex flex-col">
-      <CarNav />
+     
       <div className="w-full h-full flex">
         <div className="w-[60%] flex justify-center">
           <div className="mt-24 flex">

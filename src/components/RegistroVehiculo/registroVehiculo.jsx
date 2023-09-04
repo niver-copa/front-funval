@@ -3,14 +3,8 @@ import React from 'react';
 function RegistroVehiculo() {
   return (
     <div>
-      <nav className="bg-blue-900 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex space-x-4">
-            <span className="text-white text-2xl font-bold">icono</span>
-          </div>
-        </div>
-      </nav>
-      <main className="container mx-auto py-8">
+      
+      <main className="container mx-auto py-8 mt-14">
         <h1 className="font-bold text-2xl border-b-2 border-blue-900 ">
           Registro de vehiculo
         </h1>
