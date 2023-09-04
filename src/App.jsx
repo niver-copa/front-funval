@@ -6,7 +6,8 @@ import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
-import CarNav from "./components/Nav/Nav";
+import Nav from "./components/Nav/Nav";
+
 import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
 
@@ -16,7 +17,7 @@ import Marcas from "./components/Marcas/page";
 function App() {
   return (
     <BrowserRouter>
-     <CarNav/>
+      <Nav/>
       <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesRegistro />} />
