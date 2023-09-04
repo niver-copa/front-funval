@@ -66,24 +66,24 @@ function RegistroVehiculo() {
                 <br></br>
               <label htmlFor="marca" className="mt-2">Marca:</label>
               <select id="marca" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.marca} onChange={handleInputChange}>
-                <option value="toyota" onChange={handleInputChange}>Toyota</option>
-                <option value="mitsubishi" onChange={handleInputChange}>Mitsubishi</option>
-                <option value="chevrolet" onChange={handleInputChange}>Chevrolet</option>
+                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
+                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
+                <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
               </select>
                 <br></br>
 
               <label htmlFor="modelo" className="mt-2">Modelo:</label>
               <select id="modelo" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.modelo} onChange={handleInputChange}>
-                <option value="unknow" onChange={handleInputChange}>unknow</option>
-                <option value="unknow" onChange={handleInputChange}>unknow</option>
-                <option value="unknow" onChange={handleInputChange}>unknow</option>
+                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
+                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
+                <option value="modelo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
               </select>
               <br></br>
 
               <label htmlFor="Tipo de vehiculo" className="mt-2">Tipo de vehiculo:</label>
-              <select id="Tipo de vehiculo" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.tipo_de_vehiculo} onChange={handleInputChange}>
-                <option value="unknow" onChange={handleInputChange}>unknow</option>
-                <option value="unknow" onChange={handleInputChange}>unknow</option>
+              <select id="tipo_de_vehiculo" className="mt-2 bg-blue-900 text-white font-bold rounded-lg p-2" value={userData.tipo_de_vehiculo} onChange={handleInputChange}>
+                <option value="tipo_de_vehiculo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
+                <option value="tipo_de_vehiculo" onChange={(e) => setMarca(e.target.value)}>unknow</option>
               </select>
               <br></br>
 
