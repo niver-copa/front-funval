@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const optionData = ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "BMW"];
 
@@ -21,31 +22,64 @@ const SideBar = ({setFiltro}) => {
     });
   }
  
+  const [marcas, setMarcas] = useState([]);
+  const [modelos, setModelos] = useState([]);
+  const [modelosOriginales, setModelosOriginales] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/marcas')
+      .then((response) => {
+        setMarcas(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios.get('http://127.0.0.1:8000/api/modelos')
+      .then((response) => {
+        setModelos(response.data);
+        setModelosOriginales(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  
+  function cambiarMarcas(event) {
+    setModelos(modelosOriginales);
+    const marcaSeleccionadaId = parseInt(event.target.value);
+    
+    const modelosFiltrados = modelosOriginales.filter(modelo => modelo.marca_id === marcaSeleccionadaId);
+    
+    setModelos(modelosFiltrados);
+  }
   return (
     <div className="hidden md:w-[20%] h-screen md:flex justify-center  bg-[#f9f9f9] shadow-md">
       <form className="w-[90%] flex flex-col gap-6 mt-10">
+
         <div className="flex flex-col gap-2">
           <span className="text-zinc-600 font-semibold">Marca</span>
-          <input
+          <select
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
-            name="marca"
-            type="text"
-            placeholder="Ingrese la marca"
-            value={marca}
-            onChange={(e) => setMarca(e.target.value)}
-          />
+            name="modelo"
+            onChange={cambiarMarcas}
+          >
+            {marcas.map((e,index) => (
+              <option key={index} value={e.id}>{e.nombre}</option>
+            ))}
+          </select>
         </div>
 
         <div className="flex flex-col gap-2">
           <span className="text-zinc-600 font-semibold">Modelo</span>
           <select
-          //  value={modelo}
-          //  onChange={(e) => setModelo(e.target.value)}
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
             name="marca"
           >
-            {optionData.map((e,index) => (
-              <option key={index} value={e}>{e}</option>
+            {modelos.map((e,index) => (
+              <option key={index} value={e.id}>{e.nombre}</option>
             ))}
           </select>
         </div>
