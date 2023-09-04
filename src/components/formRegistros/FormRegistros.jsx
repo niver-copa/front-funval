@@ -7,15 +7,13 @@ export default function FormRegistros() {
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
-    correo: "",
-    contra: "",
     telefono: "",
     sexo: "",
-    fecha: "",
-    documento: "",
-    pais: "",
-    codPostal: "",
+    fecha_nacimiento: "",
+    documento_identificacion: "",
     direccion: "",
+    codigo_postal: "",
+    pais: "",
   });
 
   const handleInputChange = (event) => {
@@ -26,9 +24,7 @@ export default function FormRegistros() {
     }));
   };
 
-
-  const [select, setSelect] = useState()
-
+  const [select, setSelect] = useState();
 
   return (
     <Fragment>
@@ -40,74 +36,62 @@ export default function FormRegistros() {
         >
           <div className=" flex flex-wrap w-[45%] h-[90%] justify-around items-center">
             <label htmlFor="nombre" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">Nombre</h3>
+              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
+                Nombre
+              </h3>
               <input
                 value={formData.nombre}
                 onChange={handleInputChange}
                 type="text"
                 name="nombre"
                 id="nombre"
-                className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
             <label htmlFor="apellido" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">Apellido</h3>
+              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
+                Apellido
+              </h3>
               <input
                 value={formData.apellido}
                 onChange={handleInputChange}
                 type="text"
                 name="apellido"
                 id="apellido"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
-              />
-            </label>
-            <label htmlFor="correo" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">Correo</h3>
-              <input
-                value={formData.correo}
-                onChange={handleInputChange}
-                type="text"
-                name="correo"
-                id="correo"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
-              />
-            </label>
-            <label htmlFor="contra" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
-                Contraseña
-              </h3>
-              <input
-                value={formData.contra}
-                onChange={handleInputChange}
-                type="password"
-                name="contra"
-                id="contra"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
             <label htmlFor="telefono" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">Telefono</h3>
+              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">
+                Telefono
+              </h3>
               <input
                 value={formData.telefono}
                 onChange={handleInputChange}
                 type="text"
                 name="telefono"
                 id="telefono"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
             <label htmlFor="sexo" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">Sexo</h3>
+              <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
+                Sexo
+              </h3>
               <input
                 value={formData.sexo}
                 onChange={handleInputChange}
                 type="text"
                 name="sexo"
                 id="sexo"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
-            <label htmlFor="fecha" className="relative">
+            <label htmlFor="fecha_nacimiento" className="relative">
               <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
                 Fec. de Nacimiento
               </h3>
@@ -115,12 +99,13 @@ export default function FormRegistros() {
                 value={formData.fecha}
                 onChange={handleInputChange}
                 type="text"
-                name="fecha"
-                id="fecha"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                name="fecha_nacimiento"
+                id="fecha_nacimiento"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
-            <label htmlFor="documento" className="relative">
+            <label htmlFor="documento_identificacion" className="relative">
               <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
                 Doc. de Identidad
               </h3>
@@ -128,23 +113,27 @@ export default function FormRegistros() {
                 value={formData.documento}
                 onChange={handleInputChange}
                 type="text"
-                name="documento"
-                id="documento"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                name="documento_identificacion"
+                id="documento_identificacion"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
             <label htmlFor="pais" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">País</h3>
+              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">
+                País
+              </h3>
               <input
                 value={formData.pais}
                 onChange={handleInputChange}
                 type="text"
                 name="pais"
                 id="pais"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
-            <label htmlFor="codPostal" className="relative">
+            <label htmlFor="codigo_postal" className="relative">
               <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
                 Código Postal
               </h3>
@@ -152,43 +141,68 @@ export default function FormRegistros() {
                 value={formData.codPostal}
                 onChange={handleInputChange}
                 type="text"
-                name="codPostal"
-                id="codPostal"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                name="codigo_postal"
+                id="codigo_postal"
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
             <label htmlFor="direccion" className="relative">
-              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">Dirección</h3>
+              <h3 className=" ml-3 bg-white absolute px-2 bottom-8 rounded-lg shadow-sm">
+                Dirección
+              </h3>
               <input
                 value={formData.direccion}
                 onChange={handleInputChange}
                 type="text"
                 name="direccion"
                 id="direccion"
-                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none" required
+                className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+                required
               />
             </label>
-            <select className=" border-black border-2 py-2 pl-4 w-[200px]" name="select" id="select" onChange={e => setSelect(e.target.value)} required>
-              <option value="" disabled selected>--Seleccione--</option>
+            <select
+              className=" border-black border-2 py-2 pl-4 w-[200px]"
+              name="select"
+              id="select"
+              onChange={(e) => setSelect(e.target.value)}
+              required
+            >
+              <option value="" disabled selected>
+                --Seleccione--
+              </option>
               <option value="proveedor">Proveedor</option>
               <option value="cliente">Cliente</option>
               <option value="vendedor">Vendedor</option>
             </select>
           </div>
           <div className=" flex flex-col justify-between w-[45%] h-[90%]">
-            <div style={{ boxShadow: "inset -7px -7px  10px #dfdfdf" }} className="flex border w-full h-[80%] overflow-x-hidden overflow-y-scroll justify-center items-center" >
-              {select === 'proveedor' && <p><FormProveedores /></p>}
-              {select === 'cliente' && <p><FormClientes /></p>}
-              {select === 'vendedor' && <p><FormVendedores /></p>}
+            <div
+              style={{ boxShadow: "inset -7px -7px  10px #dfdfdf" }}
+              className="flex border w-full h-[80%] overflow-x-hidden overflow-y-scroll justify-center items-center"
+            >
+              {select === "proveedor" && (
+                <p>
+                  <FormProveedores />
+                </p>
+              )}
+              {select === "cliente" && (
+                <p>
+                  <FormClientes />
+                </p>
+              )}
+              {select === "vendedor" && (
+                <p>
+                  <FormVendedores />
+                </p>
+              )}
             </div>
             <button className=" px-12 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-2xl transition-all duration-200">
               Registar
             </button>
           </div>
-
-
         </form>
       </main>
-    </Fragment >
+    </Fragment>
   );
 }
