@@ -20,10 +20,7 @@ function FormClientes() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-md ">
-      <h2 className="text-xl font-semibold mb-8 flex justify-center ">
-        Registro de Clientes
-      </h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-3 w-160">
+      <div onSubmit={handleSubmit} className="grid grid-cols-3 gap-3 w-160">
         <div className="mb-4">
           <label htmlFor="referencias" className="block font-medium mb-1">
             Referencias
@@ -72,13 +69,7 @@ function FormClientes() {
             rows="3"
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 col-span-3 mb-6"
-        >
-          Registrar Cliente
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
