@@ -1,4 +1,7 @@
 import { Fragment, useState } from "react";
+import FormClientes from "../formClientes/FormClientes";
+import FormProveedores from "../formProveedores/FormProveedores";
+import FormVendedores from "../formVendedores/FormVendedores";
 
 export default function FormRegistros() {
   const [formData, setFormData] = useState({
@@ -174,14 +177,15 @@ export default function FormRegistros() {
           </div>
           <div className=" flex flex-col justify-between w-[45%] h-[90%]">
             <div style={{ boxShadow: "inset -7px -7px  10px #dfdfdf" }} className="flex border w-full h-[80%] overflow-x-hidden overflow-y-scroll justify-center items-center" >
-              {select === 'Proveedor' && <p>Option 1 selected</p>}
-              {select === 'Cliente' && <p>Option 2 selected</p>}
-              {select === 'Vendedor' && <p>Option 3 selected</p>}
+              {select === 'Proveedor' && <p><FormProveedores /></p>}
+              {select === 'Cliente' && <p><FormClientes /></p>}
+              {select === 'Vendedor' && <p><FormVendedores /></p>}
             </div>
             <button className=" px-12 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-2xl transition-all duration-200">
               Registar
             </button>
           </div>
+
 
         </form>
       </main>
