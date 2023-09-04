@@ -6,6 +6,7 @@ import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
+import Marcas from "./components/Marcas/page";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/registro" element={<RegistroVehiculo />} />
         <Route path="/cardealer" element={<CarHome />} />
         <Route path="/cardealer/:name" element={<CardDetails />} />
+        <Route path="/marcas" element={<Marcas />} />
       </Routes>
     </BrowserRouter>
   );
