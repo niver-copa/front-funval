@@ -20,7 +20,9 @@ function FormClientes() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-md ">
+
       <div onSubmit={handleSubmit} className="grid grid-cols-3 gap-3 w-160">
+
         <div className="mb-4">
           <label htmlFor="referencias" className="block font-medium mb-1">
             Referencias
@@ -69,7 +71,9 @@ function FormClientes() {
             rows="3"
           ></textarea>
         </div>
+
       </div>
+
     </div>
   );
 }

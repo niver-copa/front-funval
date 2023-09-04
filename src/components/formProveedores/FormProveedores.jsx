@@ -19,9 +19,9 @@ export default function FormProveedores() {
   return (
     <Fragment>
       <main className=" h-screen bg-white justify-center items-center flex">
+
         <div
-          action=""
-          method=""
+       
           className=" w-[50%] h-[70%] flex flex-col flex-wrap items-center justify-center bg-white rounded-3xl gap-7 shadow-slate-400 shadow-xl "
         >
           <h1>REGISTRO DE PROVEEDORES</h1>
@@ -77,7 +77,9 @@ export default function FormProveedores() {
               className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             />
           </label>
+
         </div>
+
       </main>
     </Fragment>
   );

@@ -17,8 +17,8 @@ export default function FormVendedores() {
   return (
     <>
       <div className="h-screen">
-        <form
-          action=""
+        <div
+
           className="w-5/6 h-4/5 flex items-center justify-center content-center flex-col gap-4"
         >
           <label htmlFor="name" className="relative">
@@ -45,13 +45,8 @@ export default function FormVendedores() {
             />
           </label>
 
-          <button
-            type="submit"
-            className="border bg-blue-800 text-white w-24 rounded-md"
-          >
-            Enviar
-          </button>
-        </form>
+        </div>
+
       </div>
     </>
   );

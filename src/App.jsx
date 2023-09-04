@@ -4,7 +4,9 @@ import { Home } from "./components/Home";
 import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
 
+
 import FormRegistros from "./components/formRegistros/FormRegistros";
+
 
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
 import CarNav from "./components/Nav/Nav";
@@ -17,6 +19,7 @@ import FormRegistros from "./components/formRegistros/FormRegistros";
 function App() {
   return (
     <BrowserRouter>
+
       <CarNav />
       <Routes>
         <Route path="/" element={<Home />} />
