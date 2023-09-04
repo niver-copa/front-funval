@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { CarHome } from "./components/CarHome/CarHome";
 import CardDetails from "./components/CarHome/CarDetails";
-import ClientesRegistro from "./components/ClientesRegistro";
+import FormRegistros from "./components/formRegistros/FormRegistros";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
 import CarNav from "./components/Nav/Nav";
 import Lista from "./components/lista/lista";
@@ -15,7 +15,7 @@ function App() {
       <CarNav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/clientes" element={<ClientesRegistro />} />
+        <Route path="/clientes" element={<FormRegistros />} />
         <Route path="/registro" element={<RegistroVehiculo />} />
         <Route path="/marcas" element={<Lista />} />
         <Route path="/cardealer" element={<CarHome />} />
