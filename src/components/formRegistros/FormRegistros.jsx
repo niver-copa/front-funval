@@ -6,7 +6,7 @@ import FormVendedores from "../formVendedores/FormVendedores";
 export default function FormRegistros() {
   const [formData, setFormData] = useState({
     nombre: "",
-    apellido: "",
+    apellidos: "",
     telefono: "",
     sexo: "",
     fecha_nacimiento: "",
@@ -30,7 +30,7 @@ export default function FormRegistros() {
     <Fragment>
       <main className=" h-screen bg-white justify-center items-center flex">
         <form
-          action={"api/" + select}
+          action={"http://127.0.0.1:8000/api/" + select + "/create"}
           method="POST"
           className=" w-[90%] h-[70%] flex items-center justify-around bg-white rounded-3xl  shadow-slate-400 shadow-xl "
         >
@@ -49,16 +49,16 @@ export default function FormRegistros() {
                 required
               />
             </label>
-            <label htmlFor="apellido" className="relative">
+            <label htmlFor="apellidos" className="relative">
               <h3 className=" ml-3 bg-white absolute px-2  bottom-8 rounded-lg shadow-sm">
                 Apellido
               </h3>
               <input
-                value={formData.apellido}
+                value={formData.apellidos}
                 onChange={handleInputChange}
                 type="text"
-                name="apellido"
-                id="apellido"
+                name="apellidos"
+                id="apellidos"
                 className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
                 required
               />
@@ -96,9 +96,9 @@ export default function FormRegistros() {
                 Fec. de Nacimiento
               </h3>
               <input
-                value={formData.fecha}
+                value={formData.fecha_nacimiento}
                 onChange={handleInputChange}
-                type="text"
+                type="date"
                 name="fecha_nacimiento"
                 id="fecha_nacimiento"
                 className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
@@ -110,7 +110,7 @@ export default function FormRegistros() {
                 Doc. de Identidad
               </h3>
               <input
-                value={formData.documento}
+                value={formData.documento_identificacion}
                 onChange={handleInputChange}
                 type="text"
                 name="documento_identificacion"
@@ -138,7 +138,7 @@ export default function FormRegistros() {
                 Código Postal
               </h3>
               <input
-                value={formData.codPostal}
+                value={formData.codigo_postal}
                 onChange={handleInputChange}
                 type="text"
                 name="codigo_postal"

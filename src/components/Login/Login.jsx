@@ -39,7 +39,12 @@ export const Login = () => {
     <div className="w-full h-screen flex justify-center items-center ">
       <div className="w-96 h-[26rem] shadow-lg rounded-xl bg-slate-50 p-8">
         <h1 className="w-full text-3xl text-center font-bold">LOGIN</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col p-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col p-4"
+          method="post"
+          action=""
+        >
           <div className="flex h-10 shadow px-2 rounded-lg my-6 focus-within:shadow-md">
             <img
               className="w-8 h-8"
