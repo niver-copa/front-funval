@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useState, handleSubmit } from 'react';
 import axios from 'axios';
@@ -35,6 +36,7 @@ function RegistroVehiculo() {
     setUserData({
       ...userData,
       [id]: value,
+
     });
 
   };
@@ -103,6 +105,7 @@ function RegistroVehiculo() {
       .catch((error) => {
         console.error(error);
       });
+
 
       axios.get('http://127.0.0.1:8000/api/modelos')
       .then((response) => {
@@ -328,6 +331,7 @@ function RegistroVehiculo() {
       </form>
     </div>
   );
+
 }
 
 export default RegistroVehiculo;
