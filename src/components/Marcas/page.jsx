@@ -7,7 +7,7 @@ export default function Marcas() {
   const [marcas, setMarcas] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/marcas')
+    axios.get('http://127.0.0.1:8000/api/marcas/full')
       .then((response) => {
         setMarcas(response.data);
         console.log(response.data)

@@ -152,8 +152,6 @@ function RegistroVehiculo() {
     setModelos(modelosFiltrados);
   }
 
-
-
   return (
     <div>
 
