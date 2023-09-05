@@ -1,24 +1,12 @@
-import React from 'react';
 
 function Lista() {
   return (
     <div>
-      <nav className="bg-blue-900 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex space-x-4">
-            <span className="text-white text-2xl font-bold">icono</span>
-            <a href="#" className="text-white hover:underline">Marcas</a>
-            <a href="#" className="text-white hover:underline">Modelos</a>
-            <a href="#" className="text-white hover:underline">Age</a>
-            <a href="#" className="text-white hover:underline">Categoría</a>
-            <a href="#" className="text-white hover:underline">Característica</a>
-          </div>
-        </div>
-      </nav>
+
       <main className="container mx-auto py-8">
         <div className="flex justify-center">
           <div className="w-full md:w-1/2 p-4">
-            <label htmlFor="search" className="block text-lg font-medium mb-2">Search:</label>
+            <label htmlFor="search" className="block text-lg  mb-2 font-medium">Search:</label>
             <input id="search" type="text" className="w-full px-4 py-2 border border-blue-900 rounded-md" />
           </div>
         </div>
