@@ -10,6 +10,7 @@ import Nav from "./components/Nav/Nav";
 
 import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
+import Modelos from "./components/Modelos/page";
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesRegistro />} />
         <Route path="/registro" element={<RegistroVehiculo />} />
-        <Route path="/marcas" element={<Marcas />} />
+
         <Route path="/cardealer" element={<CarHome />} />
         <Route path="/cardealer/:id" element={<CardDetails />} />
         <Route path="/marcas" element={<Marcas />} />
+        <Route path="/modelos" element={<Modelos />} />
       </Routes>
     </BrowserRouter>
   );
