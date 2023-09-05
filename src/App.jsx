@@ -5,8 +5,9 @@ import Notification from "./components/Notification"
 import { Home } from "./components/Home";
 import FormRegistros from "./components/formRegistros/FormRegistros";
 import { CarHome } from "./components/CarHome/CarHome";
-import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
-import FormProveedores from "./components/formProveedores/FormProveedores"
+import VistaCliente from "./components/vistaCliente/VistaCliente"
+import VistaProveedor from "./components/vistaProveedor/VistaProveedor"
+import VistaVendedor from "./components/vistaVendedor/VistaVendedor"
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/nouser" element={<Notification message="No valid Login" />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/clientes" element={<FormRegistros />} />
           <Route path="/cardealer" element={<CarHome />} />
-          <Route path="/registro" element={<RegistroVehiculo />} />
-          <Route path="/proveedores" element={<FormProveedores />} />
+          <Route path="/registros" element={<FormRegistros />} />
+          <Route path="/vendedores" element={<VistaVendedor />} />
+          <Route path="/clientes" element={<VistaCliente />} />
+          <Route path="/proveedores" element={<VistaProveedor />} />
         </Routes>
       </BrowserRouter>
     </div>
