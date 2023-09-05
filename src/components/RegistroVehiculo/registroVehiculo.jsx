@@ -77,8 +77,6 @@ function RegistroVehiculo() {
       setMsj({});
     }, 20000);
 
-    
-
   }
 
 
