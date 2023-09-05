@@ -7,10 +7,11 @@ import CardDetails from "./components/CarHome/CarDetails";
 import ClientesRegistro from "./components/ClientesRegistro";
 import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
 import Nav from "./components/Nav/Nav";
-
 import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
+import CrearMarca from "./components/Marcas/crearMarca";
 import Modelos from "./components/Modelos/page";
+
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesRegistro />} />
         <Route path="/registro" element={<RegistroVehiculo />} />
-
         <Route path="/cardealer" element={<CarHome />} />
         <Route path="/cardealer/:id" element={<CardDetails />} />
         <Route path="/marcas" element={<Marcas />} />
+        <Route path="/marcas/crear" element={<CrearMarca />} />
         <Route path="/modelos" element={<Modelos />} />
       </Routes>
     </BrowserRouter>
