@@ -38,7 +38,7 @@ const SideBar = ({setFiltro}) => {
 
       axios.get('http://127.0.0.1:8000/api/modelos')
       .then((response) => {
-        setModelos(response.data);
+       
         setModelosOriginales(response.data);
         
       })
@@ -80,7 +80,7 @@ const SideBar = ({setFiltro}) => {
             name="modelo"
             onChange={cambiarModelos}
           >
-            <option value="" disable></option>
+            <option value="" disable="true"></option>
             {marcas.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
             ))}
@@ -93,7 +93,7 @@ const SideBar = ({setFiltro}) => {
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
             name="marca"
             onChange={definirModelo}
-          >
+          ><option value="" disable="true"></option>
             {modelos.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
             ))}

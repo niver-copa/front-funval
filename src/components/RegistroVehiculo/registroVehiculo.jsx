@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function RegistroVehiculo() {
 
-  const [errores, setErrores] = useState({});
+  const [msj, setMsj] = useState({});
 
   const [userData, setUserData] = useState({
     matricula: '',
@@ -40,34 +40,122 @@ function RegistroVehiculo() {
   };
 
   function Enviar(e) {
-    console.log(userData)
+   
 
     e.preventDefault(); 
     const formData = new FormData(e.target);
     const datos = {};
+    datos["sucursal_id"]= sessionStorage.getItem('sucursa');
     formData.forEach((value, id) => {
      
-      datos[id] = value;
-      console.log(datos)
-    });
+      setUserData((userData)=>({
+        ...userData,
+        [id]: value,
+      }));
 
+      datos[id] = value;
+      
+    });
+    console.log(datos)
+    console.log(userData)
 
     axios.post('http://localhost:8000/api/vehiculos', datos)
     .then((response) => {
       console.log('Usuario creado con éxito:', response.data);
+      setMsj(response.data)
     })
     .catch((error) => {
-      const data = JSON.parse(error.request.response)["errors"];
-      console.log(data);
-      setErrores(data)
-      setTimeout(() => {
-        setErrores({});
-      }, 10000);
 
+     
+      const data = JSON.parse(error.request.response)["errors"] || JSON.parse(error.request.response);
+      console.log(data);
+      console.log(JSON.parse(error.request.response));
+      setMsj(data)
     });
+
+    setTimeout(() => {
+      setMsj({});
+    }, 20000);
+
     
 
   }
+
+
+  
+  const [marcas, setMarcas] = useState([]);
+  const [modelos, setModelos] = useState([]);
+  const [suspenciones, setSuspenciones] = useState([]);
+  const [combustibles, setCombustibles] = useState([]);
+  const [cajas, setCajas] = useState([]);
+
+
+
+  const [modelosOriginales, setModelosOriginales] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/marcas')
+      .then((response) => {
+        setMarcas(response.data);
+      
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios.get('http://127.0.0.1:8000/api/modelos')
+      .then((response) => {
+        
+        setModelosOriginales(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios.get('http://127.0.0.1:8000/api/suspensiones')
+      .then((response) => {
+        
+        setSuspenciones(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios.get('http://127.0.0.1:8000/api/combustibles')
+      .then((response) => {
+        
+        setCombustibles(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios.get('http://127.0.0.1:8000/api/cajas')
+      .then((response) => {
+        
+        setCajas(response.data);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+  }, []);
+  
+  function cambiarModelos(event) {
+    setModelos(modelosOriginales);
+    const marcaSeleccionadaId = parseInt(event.target.value);
+    
+    
+    const modelosFiltrados = modelosOriginales.filter(modelo => modelo.marca_id === marcaSeleccionadaId);
+    
+    setModelos(modelosFiltrados);
+  }
+
 
 
   return (
@@ -87,17 +175,20 @@ function RegistroVehiculo() {
             <input  id="matricula" name="matricula" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.matricula} onChange={handleInputChange} />
 
             <label htmlFor="marca" className="mt-2">Marca:</label>
-            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca} onChange={handleInputChange}>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca}  onChange={cambiarModelos}>
+                <option value="" disable="true"></option>
+                {marcas.map((e,index) => (
+                  <option key={index} value={e.id}>{e.nombre}</option>
+                ))}
             </select>
 
+            
             <label htmlFor="modelo_id" className="mt-2">Modelo:</label>
             <select  id="modelo_id" name="modelo_id"  className=" border-2 border-blue-900 rounded-lg" value={userData.modelo_id} onChange={handleInputChange}>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+              <option value="" disable="true"></option>
+              {modelos.map((e,index) => (
+                <option key={index} value={e.id}>{e.nombre}</option>
+              ))}
             </select>
 
             <label htmlFor="anio" className="mt-2">Año</label>
@@ -108,16 +199,18 @@ function RegistroVehiculo() {
 
             <label htmlFor="combustible_id" className="mt-2">Combustible:</label>
             <select id="combustible_id" name="combustible_id" className=" border-2 border-blue-900 rounded-lg" value={userData.combustible_id} onChange={handleInputChange}>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            <option value="" disable="true"></option>
+              {combustibles.map((e,index) => (
+                <option key={index} value={e.id}>{e.nombre}</option>
+              ))}
             </select>
 
             <label htmlFor="caja_id" className="mt-2">Caja:</label>
             <select id="caja_id" name="caja_id" className=" border-2 border-blue-900 rounded-lg" value={userData.caja_id} onChange={handleInputChange}>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-              <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+            <option value="" disable="true"></option>
+              {cajas.map((e,index) => (
+                <option key={index} value={e.id}>{e.tipo}</option>
+              ))}
             </select>
 
 
@@ -149,17 +242,20 @@ function RegistroVehiculo() {
             <div className="grid grid-cols-2 gap-x-4 ">
               <label htmlFor="delantera_suspension_id" className="mt-2">Suspecion Delantera: <br />
                 <select id="delantera_suspension_id" name="delantera_suspension_id" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.delantera_suspension_id} onChange={handleInputChange}>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+                  <option value="" disable="true"></option>
+                  {suspenciones.map((e,index) => (
+                    <option key={index} value={e.id}>{e.tipo}</option>
+                  ))}
                 </select>
               </label>
 
+          
               <label htmlFor="trasera_suspension_id" className="mt-2 ">Suspecion Trasera: <br />
                 <select id="trasera_suspension_id" name="trasera_suspension_id" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.trasera_suspension_id} onChange={handleInputChange}>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Toyota</option>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Mitsubishi</option>
-                  <option value="marca" onChange={(e) => setMarca(e.target.value)}>Chevrolet</option>
+                <option value="" disable="true"></option>
+                  {suspenciones.map((e,index) => (
+                    <option key={index} value={e.id}>{e.tipo}</option>
+                  ))}
                 </select>
               </label>
 
@@ -213,7 +309,7 @@ function RegistroVehiculo() {
 
         <section className="font-semibold text-xl text-center text-red-400 mt-4">
           <h1   >
-            {Object.entries(errores).map(([clave, valor]) => (
+            {Object.entries(msj).map(([clave, valor]) => (
               <li key={clave}>
                 <strong>{clave}:</strong> {valor}
               </li>
