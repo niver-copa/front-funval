@@ -1,91 +1,88 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const navigatetoUrl = useNavigate();
+    
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(email);
+    const formData =     {
+        "email": email,
+        "password": password
+    };
+    console.log(formData);
 
-    try {
-      const response = fetch("url", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    const request_options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),      
+    };
+
+    fetch("http://127.0.0.1:8000/api/user/login", request_options)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (result == "1") {
+            navigatetoUrl("/home");
+            console.log("login OK -> " + result);
+          } else {
+            navigatetoUrl("/nouser");
+            console.log("No valid login -> " + result);
+          }
         },
-        body: JSON.stringify(formData),
-      });
+        (error) => {
+          setError(error);
+          console.log(error);
+        }
+      );
 
-      if (response.ok) {
-        const token = response.data.token;
-        sessionStorage.setItem("sessionToke", token);
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center ">
-      <div className="w-96 h-[26rem] shadow-lg rounded-xl bg-slate-50 p-8">
-        <h1 className="w-full text-3xl text-center font-bold">LOGIN</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col p-4"
-          method="post"
-          action=""
-        >
-          <div className="flex h-10 shadow px-2 rounded-lg my-6 focus-within:shadow-md">
-            <img
-              className="w-8 h-8"
-              src="/src/assets/mail.svg"
-              alt="email icon"
-            />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="w-full px-2 outline-none"
-              placeholder="Email"
-              onChange={handleInputChange}
-              value={formData.email}
-            />
-          </div>
-
-          <div className="flex h-10 shadow px-2 rounded-lg my-6 focus-within:shadow-md">
-            <img
-              className="w-8 h-8"
-              src="/src/assets/lock.svg"
-              alt="email icon"
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="w-full px-2 outline-none"
-              placeholder="Password"
-              onChange={handleInputChange}
-              value={formData.email}
-            />
-          </div>
-
-          <div className="w-full flex justify-center mt-6">
-            <button className="w-44 h-9 shadow-md text-center rounded-md hover:bg-slate-200 text-lg font-medium">
-              Login
-            </button>
-          </div>
-        </form>
+    <main className="w-full h-screen bg-blue-200 flex justify-center items-center">
+      <div>
+      <h1 className="w-full text-3xl text-center font-bold pt-10">Ingrese credenciales</h1>
+      <form className="w-full text-3xl pt-10" onSubmit={handleSubmit}>
+        <div>
+          <label class=" pl-14" htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
+        </div>
+        <div class="mt-6">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
+        </div>
+        <button class="mt-10 bg-blue-900 text-white w-[300px] h-[64px] ml-[15%]" type="submit">Login</button>
+      </form>
       </div>
-    </div>
+    </main>
   );
-};
+}
+
+export default LoginForm;

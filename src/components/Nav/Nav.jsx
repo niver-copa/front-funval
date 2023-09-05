@@ -14,7 +14,7 @@ const Nav = () => {
           alt="Flowbite Logo"
         />
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-          Flowbite
+        
         </span>
       </a>
      
@@ -98,7 +98,6 @@ const Nav = () => {
               Listado
             </a>
           </li>
-
           <li>
             <a
               href="/clientes"
@@ -108,6 +107,24 @@ const Nav = () => {
               Clientes
             </a>
           </li>
+          <li>
+            <a
+              href="/proveedores"
+              className="block  text-white  bg-transparent "
+              aria-current="page"
+            >
+              Proveedores
+            </a>
+          </li>      
+          <li>
+            <a
+              href="#"
+              className="block  text-white  bg-transparent "
+              aria-current="page"
+            >
+              Vendedores
+            </a>
+          </li>                
           <li>
             <a
               href="/registro"

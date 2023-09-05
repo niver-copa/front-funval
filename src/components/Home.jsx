@@ -1,10 +1,12 @@
 import React from "react";
+import CarNav from "./Nav/Nav"
 
 export const Home = () => {
   return (
   
   <div className="h-screen">
-    <img className="w-full h-full object-cover " src="./fondo.png" alt="user" />
+    <CarNav />
+    <h1>This is the home page!!</h1>
 </div>
   
   
