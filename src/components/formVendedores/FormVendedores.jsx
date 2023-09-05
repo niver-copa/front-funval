@@ -2,8 +2,9 @@ import { useState } from "react";
 
 export default function FormVendedores() {
   const [formData, setFormData] = useState({
-    name: "",
-    state: "",
+    nombre_empresa: "",
+    telefono_empresa: "",
+    direccion_empresa: "",
   });
 
   const handleInputChange = (event) => {
@@ -17,34 +18,49 @@ export default function FormVendedores() {
   return (
     <>
       <div className="h-screen">
-        <form action="" className="w-5/6 h-4/5 flex items-center justify-center content-center flex-col gap-4">
-        <label htmlFor="name" className="relative">
-          <h3 className=" ml-3 bg-white absolute px-2  bottom-8">Nombre</h3>
-          <input
-            value={formData.name}
-            onChange={handleInputChange}
-            type="text"
-            name="name"
-            id="name"
-            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
-          />
-        </label>
+        <div
 
-        <label htmlFor="state" className="relative">
-          <h3 className=" ml-3 bg-white absolute px-2  bottom-8">State</h3>
-          <input
-            value={formData.state}
-            onChange={handleInputChange}
-            type="text"
-            name="state"
-            id="state"
-            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
-          />
-        </label>
+          className="w-5/6 h-4/5 flex items-center justify-center content-center flex-col gap-4"
+        >
+          <label htmlFor="nombre_empresa" className="relative">
+            <h3 className=" ml-3 bg-white absolute px-2  bottom-8">Nombre de la Empresa</h3>
+            <input
+              value={formData.nombre_empresa}
+              onChange={handleInputChange}
+              type="text"
+              name="nombre_empresa"
+              id="nombre_empresa"
+              className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+            />
+          </label>
+
+          <label htmlFor="telefono_empresa" className="relative">
+            <h3 className=" ml-3 bg-white absolute px-2  bottom-8">Teléfono de la Empresa</h3>
+            <input
+              value={formData.telefono_empresa}
+              onChange={handleInputChange}
+              type="text"
+              name="telefono_empresa"
+              id="telefono_empresa"
+              className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+            />
+          </label>
+
+          <label htmlFor="direccion_empresa" className="relative">
+            <h3 className=" ml-3 bg-white absolute px-2  bottom-8">Dirección de la Empresa</h3>
+            <input
+              value={formData.direccion_empresa}
+              onChange={handleInputChange}
+              type="text"
+              name="direccion_empresa"
+              id="direccion_empresa"
+              className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none"
+            />
+          </label>
 
 
-        <button type="submit" className="border bg-blue-800 text-white w-24 rounded-md" >Enviar</button>
-        </form>
+        </div>
+
       </div>
     </>
   );

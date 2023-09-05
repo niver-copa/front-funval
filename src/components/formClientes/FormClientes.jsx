@@ -20,10 +20,7 @@ function FormClientes() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-md ">
-      <h2 className="text-xl font-semibold mb-8 flex justify-center ">
-        Registro de Clientes
-      </h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-3 w-160">
+      <div onSubmit={handleSubmit} className="flex flex-row flex-wrap gap-3">
         <div className="mb-4">
           <label htmlFor="referencias" className="block font-medium mb-1">
             Referencias
@@ -32,7 +29,7 @@ function FormClientes() {
             id="referencias"
             value={formData.referencias}
             onChange={handleInputChange}
-            className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-100 resize-none"
+            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             rows="3"
           ></textarea>
         </div>
@@ -44,7 +41,7 @@ function FormClientes() {
             id="historialCompras"
             value={formData.histdecompras}
             onChange={handleInputChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 resize-none"
+            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             rows="3"
           ></textarea>
         </div>
@@ -57,7 +54,7 @@ function FormClientes() {
             id="nivelSatisfaccion"
             value={formData.niveldesatisfacion}
             onChange={handleInputChange}
-            className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
           />
         </div>
         <div className="mb-4">
@@ -68,17 +65,11 @@ function FormClientes() {
             id="observaciones"
             value={formData.observaciones}
             onChange={handleInputChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 resize-none"
+            className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             rows="3"
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 col-span-3 mb-6"
-        >
-          Registrar Cliente
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

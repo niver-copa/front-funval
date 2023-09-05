@@ -18,14 +18,9 @@ export default function FormProveedores() {
 
   return (
     <Fragment>
-      <main className=" h-screen bg-white justify-center items-center flex">
-        <form
-          action=""
-          method=""
-          className=" w-[50%] h-[70%] flex flex-col flex-wrap items-center justify-center bg-white rounded-3xl gap-7 shadow-slate-400 shadow-xl "
-        >
-          <h1>REGISTRO DE PROVEEDORES</h1>
-          <label htmlFor="nombre" className="relative w-[70%]">
+      <div className="  bg-white  flex">
+        <div className=" w-full h-full flex flex-col flex-wrap items-center justify-center bg-white rounded-3xl gap-7 shadow-slate-400 shadow-xl p-5">
+          <label htmlFor="nombre" className="relative w-full">
             <h3 className=" ml-3 bg-white absolute px-2  bottom-8">
               Nombre de la empresa
             </h3>
@@ -38,7 +33,7 @@ export default function FormProveedores() {
               className="border-2 border-black  rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             />
           </label>
-          <label htmlFor="correo" className="relative w-[70%]">
+          <label htmlFor="correo" className="relative w-full">
             <h3 className=" ml-3 bg-white absolute px-2  bottom-8">
               Correo de la empresa
             </h3>
@@ -51,7 +46,7 @@ export default function FormProveedores() {
               className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             />
           </label>
-          <label htmlFor="direccion" className="relative w-[70%]">
+          <label htmlFor="direccion" className="relative w-full">
             <h3 className=" ml-3 bg-white absolute px-2 bottom-8">
               Dirección de la empresa
             </h3>
@@ -64,7 +59,7 @@ export default function FormProveedores() {
               className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             />
           </label>
-          <label htmlFor="telefono" className="relative w-[70%]">
+          <label htmlFor="telefono" className="relative w-full">
             <h3 className=" ml-3 bg-white absolute px-2 bottom-8">
               Telefono de la empresa
             </h3>
@@ -77,12 +72,8 @@ export default function FormProveedores() {
               className="border-2 border-black rounded-[5px] p-2 focus-visible:border-blue-700 focus-visible:border-2 focus-visible:outline-none w-full"
             />
           </label>
-
-          <button className=" px-12 py-3 bg-blue-600 text-white rounded-2xl w-[70%]">
-            Registar
-          </button>
-        </form>
-      </main>
+        </div>
+      </div>
     </Fragment>
   );
 }
