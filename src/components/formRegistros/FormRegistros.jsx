@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import FormClientes from "../formClientes/FormClientes";
 import FormProveedores from "../formProveedores/FormProveedores";
 import FormVendedores from "../formVendedores/FormVendedores";
+import Nav from "../Nav/Nav";
 
 export default function FormRegistros() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,10 @@ export default function FormRegistros() {
     direccion: "",
     codigo_postal: "",
     pais: "",
+    referencias: "",
+    histdecompras: "",
+    niveldesatisfacion: "",
+    observaciones: "",
   });
 
   const handleInputChange = (event) => {
@@ -28,6 +33,7 @@ export default function FormRegistros() {
 
   return (
     <Fragment>
+      <Nav />
       <main className=" h-screen bg-white justify-center items-center flex">
         <form
           action={"http://127.0.0.1:8000/api/" + select + "/create"}
