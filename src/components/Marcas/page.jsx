@@ -7,10 +7,10 @@ export default function Marcas() {
   const [marcas, setMarcas] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/marcas')
+    axios.get('http://127.0.0.1:8000/api/marcas/full')
       .then((response) => {
         setMarcas(response.data);
-        console.log(response.data)
+        
       })
       .catch((error) => {
         console.error(error);
@@ -25,13 +25,14 @@ export default function Marcas() {
               <label htmlFor="search" className="block text-lg  mb-2 font-medium">Search:</label>
               <input id="search" type="text" className="w-full px-4 py-2 border border-blue-900 rounded-md" />
             </div>
-            <button
-              onClick={() => setIsModalOpen(!isModalOpen)}
-              className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-12 text-center dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            <a
+              
+              href="/marcas/crear"
+              className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-12 text-center dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-center items-center"
               type="button"
             >
               Agregar Marca
-            </button>
+            </a>
           </div>
           <div className="flex flex-col items-center">
             <h1 className="text-2xl mt-4">Nuestras Marcas</h1>
