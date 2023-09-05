@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState, handleSubmit } from 'react';
+
 import axios from 'axios';
 
 function RegistroVehiculo() {
