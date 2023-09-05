@@ -1,10 +1,8 @@
 
+
 import { useEffect, useState } from "react";
 import { Dropdown, Navbar } from 'flowbite-react';
 import axios from 'axios';
-
-
-
 
 
 export default function Nav() {
@@ -68,6 +66,27 @@ useEffect(() => {
         <Navbar.Link  href="/registro" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
           Vehiculos
         </Navbar.Link>
+
+ <Navbar.Link  href="/clientes" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
+          Clientes
+        </Navbar.Link>
+
+ <Navbar.Link  href="/proveedores" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
+          Proveedores
+        </Navbar.Link>
+
+ <Navbar.Link  href="/vendedores" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
+          Vendedores
+        </Navbar.Link>
+
+
+
+ <Navbar.Link  href="/registros" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
+          Registros
+        </Navbar.Link>
+
+
+
     </ul>
 </div>
  <div className="flex items-center gap-4 me-4">

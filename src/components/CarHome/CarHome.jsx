@@ -50,11 +50,13 @@ export const CarHome = () => {
             <Card
               key={e.id}
               title={e.modelo.nombre}
+
               img={"/car.png"}
               price={e.precio.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
               })}
+
               link={e.id}
             />
           ))}
