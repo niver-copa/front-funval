@@ -16,7 +16,7 @@ const SideBar = ({setFiltro}) => {
     setFiltro({
       marca,
       modelo,
-      precio_mi,
+      precio_mi, 
       precio_ma,
       anio,
     });
@@ -38,7 +38,7 @@ const SideBar = ({setFiltro}) => {
 
       axios.get('http://127.0.0.1:8000/api/modelos')
       .then((response) => {
-        setModelos(response.data);
+       
         setModelosOriginales(response.data);
         
       })
@@ -47,13 +47,27 @@ const SideBar = ({setFiltro}) => {
       });
   }, []);
   
-  function cambiarMarcas(event) {
+  function cambiarModelos(event) {
     setModelos(modelosOriginales);
     const marcaSeleccionadaId = parseInt(event.target.value);
+    definirMarca(marcaSeleccionadaId);
     
     const modelosFiltrados = modelosOriginales.filter(modelo => modelo.marca_id === marcaSeleccionadaId);
     
     setModelos(modelosFiltrados);
+  }
+  function definirMarca(idMarca){
+    const brand = marcas.filter(m => m.id == idMarca);
+    const nombre = brand[0].nombre;
+    setMarca(nombre);
+    
+  }
+  function definirModelo(event){
+    const modeloId = parseInt(event.target.value);
+    const model = modelos.filter(m => m.id == modeloId);
+    const nombre = model[0].nombre;
+    setModelo(nombre);
+    
   }
   return (
     <div className="hidden md:w-[20%] h-screen md:flex justify-center  bg-[#f9f9f9] shadow-md">
@@ -64,8 +78,9 @@ const SideBar = ({setFiltro}) => {
           <select
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
             name="modelo"
-            onChange={cambiarMarcas}
+            onChange={cambiarModelos}
           >
+            <option value="" disable="true"></option>
             {marcas.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
             ))}
@@ -77,7 +92,8 @@ const SideBar = ({setFiltro}) => {
           <select
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
             name="marca"
-          >
+            onChange={definirModelo}
+          ><option value="" disable="true"></option>
             {modelos.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
             ))}
