@@ -13,7 +13,7 @@ export const CarHome = () => {
       .get("http://127.0.0.1:8000/api/vehiculos")
       .then((response) => {
         setVehiculo(response.data);
-        console.log(response.data);
+    
       })
       .catch((error) => {
         console.error(error);
@@ -50,7 +50,7 @@ export const CarHome = () => {
             <Card
               key={e.id}
               title={e.modelo.nombre}
-              img={"/car1.png"}
+              img={"/car.png"}
               price={e.precio.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",

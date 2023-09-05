@@ -31,7 +31,7 @@ useEffect(() => {
 
 
   return (
-    <nav className="z-10 top-0 fixed w-screen bg-blue-950 max-w-screen flex flex-wrap items-center justify-between text-white h-20 py-0 px-6" >
+    <nav className="  z-10 top-0 fixed w-screen bg-blue-950 max-w-screen flex flex-wrap items-center justify-between text-white h-20 py-0 px-6" >
       <div className="flex gap-2 items-center h-full font-medium ">
       <Navbar.Brand href="/" className="flex items-center ">
       <img
@@ -39,7 +39,7 @@ useEffect(() => {
           className="h-8 mr-3"
           alt="Flowbite Logo"
         />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <span className="self-center text-2xl font-semibold whitespace-nowrap ">
           Flowbite
         </span>
       </Navbar.Brand>
@@ -58,14 +58,14 @@ useEffect(() => {
         </Dropdown>
         </div>
        
-       <ul className='flex h-full items-center'>
-        <Navbar.Link  href="/cardealer" className="flex h-20 p-4 items-center text-white   hover:bg-blue-900">
+       <ul className='flex items-center h-20 '>
+        <Navbar.Link  href="/cardealer" className=" border-b-0 flex h-20 p-4 items-center text-white   hover:bg-blue-900">
           Listado
         </Navbar.Link>
-        <Navbar.Link  href="/clientes" className="flex h-20 p-4 items-center  text-white   hover:bg-blue-900">
+        <Navbar.Link  href="/clientes" className="border-b-0 flex h-20 p-4 items-center  text-white   hover:bg-blue-900">
           Clientes
         </Navbar.Link>
-        <Navbar.Link  href="/registro" className="flex h-20 p-4 items-center text-white  hover:bg-blue-900">
+        <Navbar.Link  href="/registro" className="border-b-0 flex h-20 p-4 items-center text-white  hover:bg-blue-900">
           Vehiculos
         </Navbar.Link>
     </ul>
