@@ -4,6 +4,7 @@ import axios from "axios";
 import CarNav from "../Nav/Nav";
 import Card from "./Card";
 import SideBar from "./SideBar";
+import Nav from "../Nav/Nav";
 
 export const CarHome = () => {
   const [vehiculo, setVehiculo] = useState([]);
@@ -13,7 +14,6 @@ export const CarHome = () => {
       .get("http://127.0.0.1:8000/api/vehiculos")
       .then((response) => {
         setVehiculo(response.data);
-    
       })
       .catch((error) => {
         console.error(error);
@@ -43,6 +43,7 @@ export const CarHome = () => {
 
   return (
     <div className="max-w-screen w-full h-screen bg-[#f5f5f5] flex flex-col mt-14">
+      <Nav />
       <div className="w-full h-full flex">
         <SideBar setFiltro={setFiltro} />
         <div className="w-full md:w-[80%] h-full flex flex-wrap justify-center gap-5 pt-20 overflow-y-auto max-h-screen">
@@ -50,13 +51,11 @@ export const CarHome = () => {
             <Card
               key={e.id}
               title={e.modelo.nombre}
-
               img={"/car.png"}
               price={e.precio.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
               })}
-
               link={e.id}
             />
           ))}
