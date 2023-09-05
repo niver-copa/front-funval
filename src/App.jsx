@@ -9,6 +9,7 @@ import RegistroVehiculo from "./components/RegistroVehiculo/registroVehiculo";
 import CarNav from "./components/Nav/Nav";
 import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
+import Modelos from "./components/Modelos/page";
 
 
 
@@ -21,10 +22,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesRegistro />} />
         <Route path="/registro" element={<RegistroVehiculo />} />
-        <Route path="/marcas" element={<Lista />} />
         <Route path="/cardealer" element={<CarHome />} />
         <Route path="/cardealer/:name" element={<CardDetails />} />
         <Route path="/marcas" element={<Marcas />} />
+        <Route path="/modelos" element={<Modelos />} />
       </Routes>
      
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import carData from "../../../CarData";
+import carData from "../../../carData";
 
 const CardDetails = () => {
   const params = useParams();
