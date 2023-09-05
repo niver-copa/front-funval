@@ -11,6 +11,10 @@ import Lista from "./components/lista/lista";
 import Marcas from "./components/Marcas/page";
 import CrearMarca from "./components/Marcas/crearMarca";
 import Modelos from "./components/Modelos/page";
+import Suspensiones from "./components/Suspensiones/page";
+import CrearSuspension from "./components/Suspensiones/CrearSuspension";
+
+
 
 
 function App() {
@@ -26,6 +30,8 @@ function App() {
         <Route path="/marcas" element={<Marcas />} />
         <Route path="/marcas/crear" element={<CrearMarca />} />
         <Route path="/modelos" element={<Modelos />} />
+        <Route path="/suspensiones" element={<Suspensiones />} />
+        <Route path="/suspensiones/crear" element={<CrearSuspension />} />
       </Routes>
     </BrowserRouter>
   );

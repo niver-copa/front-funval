@@ -52,6 +52,9 @@ useEffect(() => {
             <Navbar.Link  href="/modelos" className="block items-center hover:underline">
               Modelos
             </Navbar.Link>
+            <Navbar.Link  href="/suspensiones" className="block items-center hover:underline">
+              Suspensiones
+            </Navbar.Link>
         </Dropdown>
         </div>
        
