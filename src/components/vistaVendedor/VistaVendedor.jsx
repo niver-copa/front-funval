@@ -1,3 +1,4 @@
+
 import Nav from "../Nav/Nav";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -95,3 +96,4 @@ export default function VistaVendedor() {
     </div>
   );
 }
+

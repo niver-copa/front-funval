@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Nav from "../Nav/Nav";
 import axios from "axios";
@@ -105,3 +106,4 @@ export default function VistaCliente() {
     </div>
   );
 }
+
