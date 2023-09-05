@@ -39,7 +39,7 @@ export default function Nav() {
           <Dropdown
             inline
             label={"Mantenimientos "}
-            className="flex h-20 p-4 items-center mt-50"
+            className="flex h-40 p-4 items-center mt-50 "
           >
             <Navbar.Link
               href="/marcas"

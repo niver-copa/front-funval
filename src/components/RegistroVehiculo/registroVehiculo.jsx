@@ -5,6 +5,7 @@ import rateLimit from "axios-rate-limit";
 import axios from "axios";
 import Nav from "../Nav/Nav";
 
+
 function RegistroVehiculo() {
   const params = useParams().id;
   const [msj, setMsj] = useState({});
@@ -14,7 +15,6 @@ function RegistroVehiculo() {
   const [combustibles, setCombustibles] = useState([]);
   const [cajas, setCajas] = useState([]);
   const [modelosOriginales, setModelosOriginales] = useState([]);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [userData, setUserData] = useState({
     matricula: "",
     anio: "",
@@ -37,23 +37,14 @@ function RegistroVehiculo() {
     frenos_delanteros: "",
     sucursal_id: "1",
     modelo_id: "",
-    status: "",
+    status: true,
     modelo: { marca_id: 0 },
   });
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setUserData({
-      ...userData,
-      [id]: value,
-    });
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
+  
+
   const api = rateLimit(axios.create(), {
-    maxRequests: 4,
+    maxRequests: 5,
     perMilliseconds: 1000,
   });
 
@@ -71,6 +62,7 @@ function RegistroVehiculo() {
       .get("http://127.0.0.1:8000/api/modelos")
       .then((response) => {
         setModelosOriginales(response.data);
+       
       })
       .catch((error) => {
         console.error(error);
@@ -127,7 +119,10 @@ function RegistroVehiculo() {
     const formData = new FormData(e.target);
     const datos = {};
     datos["sucursal_id"] = sessionStorage.getItem("sucursal");
+    datos["status"] = false;
+
     formData.forEach((value, id) => {
+
       setUserData((userData) => ({
         ...userData,
         [id]: value,
@@ -167,15 +162,40 @@ function RegistroVehiculo() {
       setMsj({});
     }, 20000);
   }
-  function cambiarModelos(id_modelo) {
-    console.log(id_modelo);
-    setModelos(modelosOriginales);
 
-    const marcaSeleccionadaId = parseInt(id_modelo);
-    const modelosFiltrados = modelosOriginales.filter(
-      (modelo) => modelo.marca_id === marcaSeleccionadaId
-    );
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    console.log(e.target.value)
+    console.log(e.target.id)
+ 
+    setUserData({
+      ...userData,
+      [id]: value,
+    });
+  };
+
+  function cambiar(e){
+    
+    setUserData({
+      ...userData,
+      ["status"]: !userData.status,
+    });
+  }
+
+  function cambiarModelos(id_marca) {
+  
+
+    setUserData({
+      ...userData,
+      ["modelo"]: { "marca_id": id_marca },
+    });
+   
+    setModelos(modelosOriginales);
+    
+    const modelosFiltrados = modelosOriginales.filter((modelo) => modelo.marca_id == id_marca);
     setModelos(modelosFiltrados);
+    
   }
 
   return (
@@ -211,7 +231,7 @@ function RegistroVehiculo() {
               id="marca"
               className=" border-2 border-blue-900 rounded-lg"
               value={userData.modelo.marca_id}
-              onChange={cambiarModelos}
+              onChange={(e) => cambiarModelos(e.target.value) }
             >
               <option value="" disable="true"></option>
               {marcas.map((e, index) => (
@@ -229,7 +249,7 @@ function RegistroVehiculo() {
               name="modelo_id"
               className=" border-2 border-blue-900 rounded-lg"
               value={userData.modelo_id}
-              onChange={(e) => handleInputChange(e.target.value)}
+              onChange={handleInputChange}
             >
               <option value="" disable="true"></option>
               {modelos.map((e, index) => (
@@ -310,7 +330,7 @@ function RegistroVehiculo() {
             <div className="h-52 w-96 rounded-lg border-2 border-blue-900 overflow-hidden mt-2">
               <img
                 className="w-full h-full object-cover "
-                src={params ? "../car.png " : "./car.png "}
+                src={params ? "../car1.png " : "./car.png "}
                 alt="vehiculo"
               />
             </div>
@@ -353,7 +373,7 @@ function RegistroVehiculo() {
           </div>
 
           <div>
-            {" "}
+          
             <h1 className="font-bold border-b-2 border-blue-900 w-40">
               Datos Tecnicos:
             </h1>
@@ -539,11 +559,14 @@ function RegistroVehiculo() {
 
               <label className="mt-8 inline-flex items-center cursor-pointer">
                 <input
+
                   type="checkbox"
+                  id="status"
                   name="status"
                   value={userData.status}
-                  checked={userData.status}
-                  onChange={handleInputChange}
+                  
+                  defaultChecked={userData.status}
+                  onClick={cambiar}
                   className="sr-only peer"
                 />
                 <div className=" relative w-11 h-5 bg-red-600 peer-checked:bg-green-600 rounded-full peer after:bg-white  after:absolute after:top-[2px] after:left-[2px] after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 peer-checked:after:translate-x-6"></div>

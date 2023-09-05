@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Nav from "../Nav/Nav";
 
 export default function Modelos() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Modelos() {
   return (
     <>
       <div>
+      <Nav />
         <main className="container mx-auto py-8">
           <div className="flex justify-center">
             <div className="w-full md:w-1/2 p-4">
