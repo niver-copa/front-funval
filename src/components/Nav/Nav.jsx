@@ -1,8 +1,35 @@
-'use client';
 
+import { useEffect, useState } from "react";
 import { Dropdown, Navbar } from 'flowbite-react';
+import axios from 'axios';
+
+
+
+
 
 export default function Nav() {
+
+  const [sucursales, setSucursales] = useState([]);
+  const [sucursal, setSucursal] = useState(1);
+
+useEffect(() => {
+  axios.get('http://127.0.0.1:8000/api/sucursales')
+    .then((response) => {
+      setSucursales(response.data);
+      
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}, []);
+
+
+useEffect(() => {
+  sessionStorage.setItem('sucursal', sucursal)
+}, [sucursal]);
+
+
+
   return (
     <nav className="z-10 top-0 fixed w-screen bg-blue-950 max-w-screen flex flex-wrap items-center justify-between text-white h-20 py-0 px-6" >
       <div className="flex gap-2 items-center h-full font-medium ">
@@ -40,7 +67,17 @@ export default function Nav() {
         </Navbar.Link>
     </ul>
 </div>
- <div className="me-4">
+ <div className="flex items-center gap-4 me-4">
+    
+
+          <label htmlFor="marca" className="mt-2">Sucursales:</label>
+            <select id="marca" className=" border-2 bg-blue-950 rounded-lg" value={sucursal} onChange={ (e) => setSucursal(e.target.value)}  >
+                <option value="" disable="true"></option>
+                {sucursales.map((e,index) => (
+                  <option key={index} value={e.id} >{e.nombre}</option>
+                ))}
+            </select>
+
 
      
         <img
