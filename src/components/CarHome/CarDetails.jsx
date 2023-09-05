@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Nav from "../Nav/Nav";
 
 
 const CardDetails = () => {
@@ -30,10 +31,11 @@ const CardDetails = () => {
   }
   return (
     <div className="w-screen h-screen bg-[#f5f5f5] flex flex-col">
+      <Nav/>
       <div className="w-full h-full flex">
         <div className="w-[60%] flex justify-center">
           <div className="mt-24 flex">
-            <img src="/car.png" alt="car" className="h-[500px]" />
+            <img src="../car1.png" alt="car" className="h-[500px]" />
           </div>
         </div>
         <div className="w-full md:w-[40%] h-full flex flex-wrap justify-center gap-5 pt-20">
@@ -48,7 +50,7 @@ const CardDetails = () => {
               </span>
             </div>
             <div className="px-3">
-              <span>Marca: {car.modelo.nombre}</span>
+              <span>Marca: {car.modelo.marca.nombre}</span>
             </div>
 
             <div className="px-3">

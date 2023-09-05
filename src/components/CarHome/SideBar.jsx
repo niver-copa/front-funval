@@ -12,7 +12,13 @@ const SideBar = ({setFiltro}) => {
   const [anio, setAnio] = useState('');
  
   function buscar() {
-    
+
+  
+    console.log(marca,
+      modelo,
+      precio_mi, 
+      precio_ma,
+      anio)
     setFiltro({
       marca,
       modelo,
@@ -21,10 +27,10 @@ const SideBar = ({setFiltro}) => {
       anio,
     });
   }
- 
+  
+  const [modelosOriginales, setModelosOriginales] = useState([]);
   const [marcas, setMarcas] = useState([]);
   const [modelos, setModelos] = useState([]);
-  const [modelosOriginales, setModelosOriginales] = useState([]);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/marcas')
@@ -48,27 +54,14 @@ const SideBar = ({setFiltro}) => {
   }, []);
   
   function cambiarModelos(event) {
-    setModelos(modelosOriginales);
     const marcaSeleccionadaId = parseInt(event.target.value);
-    definirMarca(marcaSeleccionadaId);
-    
+    setMarca(marcaSeleccionadaId);
     const modelosFiltrados = modelosOriginales.filter(modelo => modelo.marca_id === marcaSeleccionadaId);
     
     setModelos(modelosFiltrados);
   }
-  function definirMarca(idMarca){
-    const brand = marcas.filter(m => m.id == idMarca);
-    const nombre = brand[0].nombre;
-    setMarca(nombre);
-    
-  }
-  function definirModelo(event){
-    const modeloId = parseInt(event.target.value);
-    const model = modelos.filter(m => m.id == modeloId);
-    const nombre = model[0].nombre;
-    setModelo(nombre);
-    
-  }
+
+
   return (
     <div className="hidden md:w-[20%] h-screen md:flex justify-center  bg-[#f9f9f9] shadow-md">
       <form className="w-[90%] flex flex-col gap-6 mt-10">
@@ -82,7 +75,7 @@ const SideBar = ({setFiltro}) => {
           >
             <option value="" disable="true"></option>
             {marcas.map((e,index) => (
-              <option key={index} value={e.id}>{e.nombre}</option>
+              <option key={index}  value={e.id}>{e.nombre}</option>
             ))}
           </select>
         </div>
@@ -92,7 +85,7 @@ const SideBar = ({setFiltro}) => {
           <select
             className="w-[100%] h-10 rounded-sm px-2 border border-zinc-400"
             name="marca"
-            onChange={definirModelo}
+            onChange={(e) => setModelo(e.target.value)}
           ><option value="" disable="true"></option>
             {modelos.map((e,index) => (
               <option key={index} value={e.id}>{e.nombre}</option>
