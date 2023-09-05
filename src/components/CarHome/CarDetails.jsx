@@ -6,6 +6,7 @@ import axios from "axios";
 
 const CardDetails = () => {
   const params = useParams();
+  
   const [vehiculo, setVehiculo] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const CardDetails = () => {
       .get("http://127.0.0.1:8000/api/vehiculos")
       .then((response) => {
         setVehiculo(response.data);
-        console.log(response.data);
+       
       })
       .catch((error) => {
         console.error(error);
@@ -22,17 +23,17 @@ const CardDetails = () => {
 
   const car = vehiculo.find((car) => car.id == params.id);
 
-  console.log(car);
+  
 
   if (!car) {
-    return <div>Automóvil no encontrado</div>;
+    return <div className="mt-28 text-xl text-center">Automóvil no encontrado</div>;
   }
   return (
     <div className="w-screen h-screen bg-[#f5f5f5] flex flex-col">
       <div className="w-full h-full flex">
         <div className="w-[60%] flex justify-center">
           <div className="mt-24 flex">
-            <img src="/car1.png" alt="car" className="h-[500px]" />
+            <img src="/car.png" alt="car" className="h-[500px]" />
           </div>
         </div>
         <div className="w-full md:w-[40%] h-full flex flex-wrap justify-center gap-5 pt-20">
@@ -72,6 +73,8 @@ const CardDetails = () => {
             <div className="px-3">
               <span>Combustible: {car.combustible.nombre}</span>
             </div>
+
+            <a href={"/registro/"+car.id} className="bg-blue-600 w-20 rounded-lg text-center text-white cursor-pointer"> Editar</a>
           </div>
         </div>
       </div>

@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react';
 import { useState, handleSubmit } from 'react';
-
+import { useParams } from "react-router-dom";
+import rateLimit from 'axios-rate-limit';
 import axios from 'axios';
 
 function RegistroVehiculo() {
 
-  const [msj, setMsj] = useState({});
 
+
+
+  const params = useParams().id;
+  const [msj, setMsj] = useState({});
+  const [marcas, setMarcas] = useState([]);
+  const [modelos, setModelos] = useState([]);
+  const [suspenciones, setSuspenciones] = useState([]);
+  const [combustibles, setCombustibles] = useState([]);
+  const [cajas, setCajas] = useState([]);
+  const [modelosOriginales, setModelosOriginales] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [userData, setUserData] = useState({
     matricula: '',
-    modelo_id: '',
     anio: '',
     color: '',
     combustible_id: '',
@@ -28,7 +38,10 @@ function RegistroVehiculo() {
     alimentacion: '',
     velocidades: '',
     frenos_delanteros: '',
-    sucursal_id: '1'
+    sucursal_id: '1',
+    modelo_id: '',
+    status: '',
+    modelo: { marca_id: 0 }
   });
 
   const handleInputChange = (e) => {
@@ -39,116 +52,149 @@ function RegistroVehiculo() {
     });
 
   };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+  const api = rateLimit(axios.create(), {
+    maxRequests: 4,
+    perMilliseconds: 1000,
+  });
+
+
+  useEffect(() => {
+
+
+    api.get('http://127.0.0.1:8000/api/marcas')
+      .then((response) => {
+        setMarcas(response.data);
+
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    api.get('http://127.0.0.1:8000/api/modelos')
+      .then((response) => {
+
+        setModelosOriginales(response.data);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
+    api.get('http://127.0.0.1:8000/api/suspensiones')
+      .then((response) => {
+
+        setSuspenciones(response.data);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    api.get('http://127.0.0.1:8000/api/combustibles')
+      .then((response) => {
+
+        setCombustibles(response.data);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    api.get('http://127.0.0.1:8000/api/cajas')
+      .then((response) => {
+
+        setCajas(response.data);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    if (params) {
+      api.get('http://127.0.0.1:8000/api/vehiculos/' + params)
+        .then((response) => {
+console.log(response.data)
+          setUserData(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+
+
+  }, []);
+
+  if (params) {
+    useEffect(() => {
+      cambiarModelos(userData.modelo.marca_id);
+
+    }, [modelosOriginales]);
+
+  }
+
 
   function Enviar(e) {
-   
 
-    e.preventDefault(); 
+    e.preventDefault();
     const formData = new FormData(e.target);
     const datos = {};
-    datos["sucursal_id"]= sessionStorage.getItem('sucursa');
+    datos["sucursal_id"] = sessionStorage.getItem('sucursal');
     formData.forEach((value, id) => {
-     
-      setUserData((userData)=>({
+
+      setUserData((userData) => ({
         ...userData,
         [id]: value,
       }));
 
       datos[id] = value;
-      
+
     });
 
-    axios.post('http://localhost:8000/api/vehiculos', datos)
-    .then((response) => {
-      console.log('Usuario creado con éxito:', response.data);
-      setMsj(response.data)
-    })
-    .catch((error) => {
+    console.log(datos)
+    if (params) {
+      axios.put('http://localhost:8000/api/vehiculos/' + params, datos)
+        .then((response) => {
 
-     
-      const data = JSON.parse(error.request.response)["errors"] || JSON.parse(error.request.response);
-     
-      setMsj(data)
-    });
+          setMsj(response.data)
+        })
+        .catch((error) => {
+          const data = JSON.parse(error.request.response)["errors"] || JSON.parse(error.request.response);
+          setMsj(data)
+        });
+
+
+    } else {
+      axios.post('http://localhost:8000/api/vehiculos', datos)
+        .then((response) => {
+
+          setMsj(response.data)
+        })
+        .catch((error) => {
+          const data = JSON.parse(error.request.response)["errors"] || JSON.parse(error.request.response);
+          setMsj(data)
+        });
+
+    }
+
 
     setTimeout(() => {
       setMsj({});
     }, 20000);
 
   }
-
-
-  
-  const [marcas, setMarcas] = useState([]);
-  const [modelos, setModelos] = useState([]);
-  const [suspenciones, setSuspenciones] = useState([]);
-  const [combustibles, setCombustibles] = useState([]);
-  const [cajas, setCajas] = useState([]);
-
-
-
-  const [modelosOriginales, setModelosOriginales] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/marcas')
-      .then((response) => {
-        setMarcas(response.data);
-      
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-      axios.get('http://127.0.0.1:8000/api/modelos')
-      .then((response) => {
-        
-        setModelosOriginales(response.data);
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-      axios.get('http://127.0.0.1:8000/api/suspensiones')
-      .then((response) => {
-        
-        setSuspenciones(response.data);
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-      axios.get('http://127.0.0.1:8000/api/combustibles')
-      .then((response) => {
-        
-        setCombustibles(response.data);
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-      axios.get('http://127.0.0.1:8000/api/cajas')
-      .then((response) => {
-        
-        setCajas(response.data);
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-  }, []);
-  
-  function cambiarModelos(event) {
+  function cambiarModelos(id_modelo) {
+    console.log(id_modelo)
     setModelos(modelosOriginales);
-    const marcaSeleccionadaId = parseInt(event.target.value);
-    
-    
+
+    const marcaSeleccionadaId = parseInt(id_modelo);
     const modelosFiltrados = modelosOriginales.filter(modelo => modelo.marca_id === marcaSeleccionadaId);
-    
     setModelos(modelosFiltrados);
   }
 
@@ -166,21 +212,21 @@ function RegistroVehiculo() {
             <h1 className="font-bold border-b-2 border-blue-900 w-40">Datos generales:</h1>
 
             <label htmlFor="matricula" className="mt-2">Matricula</label>
-            <input  id="matricula" name="matricula" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.matricula} onChange={handleInputChange} />
+            <input id="matricula" name="matricula" type="text" className=" border-2 border-blue-900 rounded-lg" value={userData.matricula} onChange={handleInputChange} />
 
             <label htmlFor="marca" className="mt-2">Marca:</label>
-            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.marca}  onChange={cambiarModelos}>
-                <option value="" disable="true"></option>
-                {marcas.map((e,index) => (
-                  <option key={index} value={e.id}>{e.nombre}</option>
-                ))}
+            <select id="marca" className=" border-2 border-blue-900 rounded-lg" value={userData.modelo.marca_id} onChange={cambiarModelos} >
+              <option value="" disable="true"></option>
+              {marcas.map((e, index) => (
+                <option key={index} value={e.id}>{e.nombre}</option>
+              ))}
             </select>
 
-            
+
             <label htmlFor="modelo_id" className="mt-2">Modelo:</label>
-            <select  id="modelo_id" name="modelo_id"  className=" border-2 border-blue-900 rounded-lg" value={userData.modelo_id} onChange={handleInputChange}>
+            <select id="modelo_id" name="modelo_id" className=" border-2 border-blue-900 rounded-lg" value={userData.modelo_id} onChange={(e) => handleInputChange(e.target.value)}>
               <option value="" disable="true"></option>
-              {modelos.map((e,index) => (
+              {modelos.map((e, index) => (
                 <option key={index} value={e.id}>{e.nombre}</option>
               ))}
             </select>
@@ -193,16 +239,16 @@ function RegistroVehiculo() {
 
             <label htmlFor="combustible_id" className="mt-2">Combustible:</label>
             <select id="combustible_id" name="combustible_id" className=" border-2 border-blue-900 rounded-lg" value={userData.combustible_id} onChange={handleInputChange}>
-            <option value="" disable="true"></option>
-              {combustibles.map((e,index) => (
+              <option value="" disable="true"></option>
+              {combustibles.map((e, index) => (
                 <option key={index} value={e.id}>{e.nombre}</option>
               ))}
             </select>
 
             <label htmlFor="caja_id" className="mt-2">Caja:</label>
             <select id="caja_id" name="caja_id" className=" border-2 border-blue-900 rounded-lg" value={userData.caja_id} onChange={handleInputChange}>
-            <option value="" disable="true"></option>
-              {cajas.map((e,index) => (
+              <option value="" disable="true"></option>
+              {cajas.map((e, index) => (
                 <option key={index} value={e.id}>{e.tipo}</option>
               ))}
             </select>
@@ -214,10 +260,10 @@ function RegistroVehiculo() {
 
             <label htmlFor="image" className=" font-bold border-b-2 border-blue-900 w-48">Subir foto del vehiculo</label>
             <div className="h-52 w-96 rounded-lg border-2 border-blue-900 overflow-hidden mt-2">
-              <img className="w-full h-full object-cover " src="./fondo.png" alt="user" />
+              <img className="w-full h-full object-cover " src={params ? "../car.png " : "./car.png "} alt="vehiculo" />
             </div>
 
-            <input type="file" id="image" className="font-bold mt-2" value={userData.imagen} onChange={handleInputChange} />
+            {/* <input type="file" id="image" className="font-bold mt-2" value={userData.imagen} onChange={handleInputChange} /> */}
 
             <label htmlFor="precio" className="font-bold border-b-2 border-blue-900 w-40">Precio</label>
             <div className="relative mt-2">
@@ -237,17 +283,17 @@ function RegistroVehiculo() {
               <label htmlFor="delantera_suspension_id" className="mt-2">Suspecion Delantera: <br />
                 <select id="delantera_suspension_id" name="delantera_suspension_id" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.delantera_suspension_id} onChange={handleInputChange}>
                   <option value="" disable="true"></option>
-                  {suspenciones.map((e,index) => (
+                  {suspenciones.map((e, index) => (
                     <option key={index} value={e.id}>{e.tipo}</option>
                   ))}
                 </select>
               </label>
 
-          
+
               <label htmlFor="trasera_suspension_id" className="mt-2 ">Suspecion Trasera: <br />
                 <select id="trasera_suspension_id" name="trasera_suspension_id" className=" border-2 border-blue-900 rounded-lg w-full" value={userData.trasera_suspension_id} onChange={handleInputChange}>
-                <option value="" disable="true"></option>
-                  {suspenciones.map((e,index) => (
+                  <option value="" disable="true"></option>
+                  {suspenciones.map((e, index) => (
                     <option key={index} value={e.id}>{e.tipo}</option>
                   ))}
                 </select>
@@ -258,7 +304,7 @@ function RegistroVehiculo() {
               </label>
 
               <label className="mt-2">Traccion<br />
-                <input id="traccion"  name="traccion" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.traccion} onChange={handleInputChange} />
+                <input id="traccion" name="traccion" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.traccion} onChange={handleInputChange} />
               </label>
 
               <label className="mt-2">Torque Maximo<br />
@@ -282,7 +328,7 @@ function RegistroVehiculo() {
               </label>
 
               <label htmlFor="compresion" className="mt-2">Compresion<br />
-                <input id="compresion" name="compresion"  type="number" className="w-full border-2 border-blue-900 rounded-lg " value={userData.compresion} onChange={handleInputChange} />
+                <input id="compresion" name="compresion" type="number" className="w-full border-2 border-blue-900 rounded-lg " value={userData.compresion} onChange={handleInputChange} />
               </label>
 
               <label htmlFor="alimentacion" className="mt-2">Alimentacion<br />
@@ -294,28 +340,38 @@ function RegistroVehiculo() {
               </label>
 
               <label htmlFor="frenos_delanteros" className="mt-2">Frenos<br />
-                <input id="frenos_delanteros" name="frenos_delanteros" type="number" className="w-full border-2 border-blue-900 rounded-lg " value={userData.frenos_delanteros} onChange={handleInputChange} />
+                <input id="frenos_delanteros" name="frenos_delanteros" type="text" className="w-full border-2 border-blue-900 rounded-lg " value={userData.frenos_delanteros} onChange={handleInputChange} />
               </label>
+
+              <label className="mt-8 inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="status" value={userData.status} checked={userData.status} onChange={handleInputChange} className="sr-only peer"/>
+                <div className=" relative w-11 h-5 bg-red-600 peer-checked:bg-green-600 rounded-full peer after:bg-white  after:absolute after:top-[2px] after:left-[2px] after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 peer-checked:after:translate-x-6"></div>
+                <span className="hidden ml-3 text-sm font-semibold text-gray-900 peer peer-checked:block">Activo</span>
+                <span className=" ml-3 text-sm font-semibold text-gray-900 peer peer-checked:hidden">Inactivo</span>
+            </label>
             </div>
 
           </div>
         </section>
 
-        <section className="font-semibold text-xl text-center text-red-400 mt-4">
+        <section className="font-semibold text-xl text-center  mt-8">
           <h1   >
-            {Object.entries(msj).map(([clave, valor]) => (
-              <li key={clave}>
+          {Object.entries(msj).map(([clave, valor]) => (
+              <span
+                key={clave}
+                className={clave === "msj" ? 'text-green-600' : 'text-red-400'}
+              >
                 <strong>{clave}:</strong> {valor}
-              </li>
+              </span>
             ))}
           </h1>
 
           <button
             type='submit'
             className="bg-blue-900 text-white font-bold py-2 px-10 rounded"
-           
+
           >
-            Registrar
+            {params ? "Modificar" : "Registrar"}
           </button>
         </section>
 

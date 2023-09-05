@@ -10,7 +10,7 @@ export default function Marcas() {
     axios.get('http://127.0.0.1:8000/api/marcas/full')
       .then((response) => {
         setMarcas(response.data);
-        console.log(response.data)
+        
       })
       .catch((error) => {
         console.error(error);

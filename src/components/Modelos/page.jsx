@@ -11,7 +11,7 @@ export default function Modelos() {
       .get("http://127.0.0.1:8000/api/modelos")
       .then((response) => {
         setModelos(response.data);
-        console.log(response.data);
+  
       })
       .catch((error) => {
         console.error(error);
