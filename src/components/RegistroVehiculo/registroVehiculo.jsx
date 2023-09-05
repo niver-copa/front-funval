@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useState, handleSubmit } from 'react';
 import axios from 'axios';
@@ -36,7 +35,6 @@ function RegistroVehiculo() {
     setUserData({
       ...userData,
       [id]: value,
-
     });
 
   };
@@ -58,8 +56,6 @@ function RegistroVehiculo() {
       datos[id] = value;
       
     });
-    console.log(datos)
-    console.log(userData)
 
     axios.post('http://localhost:8000/api/vehiculos', datos)
     .then((response) => {
@@ -70,8 +66,7 @@ function RegistroVehiculo() {
 
      
       const data = JSON.parse(error.request.response)["errors"] || JSON.parse(error.request.response);
-      console.log(data);
-      console.log(JSON.parse(error.request.response));
+     
       setMsj(data)
     });
 
@@ -103,7 +98,6 @@ function RegistroVehiculo() {
       .catch((error) => {
         console.error(error);
       });
-
 
       axios.get('http://127.0.0.1:8000/api/modelos')
       .then((response) => {
@@ -329,7 +323,6 @@ function RegistroVehiculo() {
       </form>
     </div>
   );
-
 }
 
 export default RegistroVehiculo;
